@@ -100,7 +100,9 @@ class FloatingPointLiteral : public Token {
 };
 
 class IntegerLiteral : public Token {
+  public:
     int64_t value;
+    IntegerLiteral(int64_t value);
 };
 
 class StringLiteral : public Token {
@@ -112,3 +114,4 @@ class UnidentifiedToken : public Token {
 };
 
 Token *resolveIdentifier(std::string id);
+Token *resolveInteger(std::string integer_string);

@@ -24,7 +24,7 @@ void Lexer::consumeWhitespace() {
 
 Lexer::Lexer(FILE *inputFile) : inputFile(inputFile) {
     last_scanned = fgetc(inputFile);
-    scanned_string += last_scanned;
+    scanned_string = last_scanned;
     line_number = 1;
     char_number = 1;
     done = false;
@@ -32,20 +32,19 @@ Lexer::Lexer(FILE *inputFile) : inputFile(inputFile) {
 }
 
 Token *Lexer::nextToken() {
-    std::cout << "NEXT TOKEN CALL\n";
     if (last_scanned == EOF) {
         done = true;
         return NULL;
     }
     Token *newToken = consumeCharacter();
     while (newToken == NULL) {
-        std::cout << "IN LOOP";
         newToken = consumeCharacter();
     }
     return newToken;
 }
 
 Token *Lexer::consumeCharacter() {
+    Token *newToken = NULL;
     switch (state) {
     case START_STATE:
         handleStartState();
@@ -57,21 +56,40 @@ Token *Lexer::consumeCharacter() {
         } else {
             state = START_STATE;
             Token *res = resolveIdentifier(scanned_string);
-            scanned_string = "" + last_scanned;
+            scanned_string = "";
+            scanned_string += last_scanned;
             return res;
         }
         break;
-        // case INTEGER_STATE:
-        //    if (isdigit(last_scanned)) {
-        //        state = INTEGER_STATE;
-        //    }
+    case INTEGER_STATE:
+        // handle error here
+        if (isdigit(last_scanned)) {
+            scanned_string += last_scanned;
+        } else if (last_scanned == '.') {
+            scanned_string += last_scanned;
+            state = TEMP_FLOAT_STATE;
+        } else {
+            state = START_STATE;
+            Token *res = resolveInteger(scanned_string);
+            scanned_string = "";
+            scanned_string += last_scanned;
+            return res;
+        }
+        // case TEMP_FLOAT_STATE:
+        //     if (isdigit(last_scanned)) {
+        //         state = FLOAT_STATE;
+        //     }
+        // else if(last_scanned)
     }
 
     last_scanned = fgetc(inputFile);
+    return NULL;
 }
 
 void Lexer::handleStartState() {
     consumeWhitespace();
+    scanned_string = "";
+    scanned_string += last_scanned;
     if (isalpha(last_scanned) || last_scanned == '_') {
         state = IDENTIFIER_STATE;
     } else if (isdigit(last_scanned)) {
@@ -103,4 +121,5 @@ void Lexer::handleStartState() {
     } else {
         state = ERROR_STATE;
     }
+    return;
 }

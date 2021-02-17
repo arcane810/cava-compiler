@@ -8,6 +8,9 @@ Keyword::Keyword(KeywordType keywordType)
 Identifier::Identifier(std::string identifier_name)
     : Token(IDENTIFIER), identifier_name(identifier_name) {}
 
+IntegerLiteral::IntegerLiteral(int64_t value)
+    : Token(INTEGER_LITERAL), value(value) {}
+
 Token *resolveIdentifier(std::string id) {
     if (id == "int") {
         return new Keyword(INT);
@@ -36,4 +39,13 @@ Token *resolveIdentifier(std::string id) {
     } else {
         return new Identifier(id);
     }
+}
+
+Token *resolveInteger(std::string integer_string) {
+    int64_t ans = 0;
+    for (char c : integer_string) {
+        ans *= 10LL;
+        ans += (c - '0');
+    }
+    return new IntegerLiteral(ans);
 }

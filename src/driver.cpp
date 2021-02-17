@@ -17,7 +17,16 @@ int main(int argc, char *argv[]) {
     Token *newToken = lexer.nextToken();
     while (newToken != NULL) {
         // std::cout << "IN LOOP\n";
-        std::cout << ((Identifier *)newToken)->identifier_name;
+        switch (newToken->tokenType) {
+        case IDENTIFIER:
+            std::cout << ((Identifier *)newToken)->identifier_name << "\n";
+            break;
+        case INTEGER_LITERAL:
+            std::cout << ((IntegerLiteral *)newToken)->value << "\n";
+            break;
+        default:
+            break;
+        }
         newToken = lexer.nextToken();
     }
 }
