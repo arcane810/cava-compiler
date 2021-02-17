@@ -1,3 +1,4 @@
+#pragma once
 #include <string>
 
 enum TokenType {
@@ -10,7 +11,9 @@ enum TokenType {
 };
 
 class Token {
+  public:
     TokenType tokenType;
+    Token(TokenType tokenType);
 };
 
 enum OperatorType {
@@ -19,7 +22,25 @@ enum OperatorType {
     MULTIPLICATION,
     DIVISION,
     ASSIGNMENT,
-    EQUIALITY,
+    EQUAL_TO,
+    NOT_EQUAL,
+    MODULO,
+    ADD_EQUAL,
+    SUB_EQUAL,
+    MUL_EQUAL,
+    DIV_EQUAL,
+    MOD_EQUAL,
+    INCREMENT,
+    DECREMENT,
+    BOOL_AND,
+    BOOL_OR,
+    BOOL_NOT,
+    GREATER,
+    LESSER,
+    GREAT_EQUAL,
+    LESS_EQUAL,
+    TERTIARY_Q,
+    TERTIARY_C
 };
 
 class Operator : public Token {
@@ -28,25 +49,29 @@ class Operator : public Token {
 
 enum KeywordType {
     INT,
-    FLOAT,
     BOOL,
     STRING,
+    FLOAT,
+    FOR,
     WHILE,
     IF,
     ELSE,
     TRUE,
     FALSE,
     BREAK,
-    FOR,
     CONTINUE
 };
 
 class Keyword : public Token {
+  public:
     KeywordType keywordType;
+    Keyword(KeywordType keywordType);
 };
 
 class Identifier : public Token {
+  public:
     std::string identifier_name;
+    Identifier(std::string identifier_name);
 };
 
 class FloatingPointLiteral : public Token {
@@ -60,3 +85,5 @@ class IntegerLiteral : public Token {
 class StringLiteral : public Token {
     std::string value;
 };
+
+Token *resolveIdentifier(std::string id);
