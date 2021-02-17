@@ -1,3 +1,5 @@
+#include <string>
+
 enum TokenType {
     IDENTIFIER,
     OPERATOR,
@@ -41,4 +43,20 @@ enum KeywordType {
 
 class Keyword : public Token {
     KeywordType keywordType;
+};
+
+class Identifier : public Token {
+    std::string identifier_name;
+};
+
+class FloatingPointLiteral : public Token {
+    long double value;
+};
+
+class IntegerLiteral : public Token {
+    int64_t value;
+};
+
+class StringLiteral : public Token {
+    std::string value;
 };
