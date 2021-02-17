@@ -7,11 +7,15 @@ enum TokenType {
     KEYWORD,
     STRING_LITERAL,
     FLOATING_POINT_LITERAL,
-    INTEGER_LITERAL
+    INTEGER_LITERAL,
+    DELIMITER,
+    UNIDENTIFIED_TOKEN
 };
 
 class Token {
   public:
+    int char_number;
+    int line_number;
     TokenType tokenType;
     Token(TokenType tokenType);
 };
@@ -68,6 +72,23 @@ class Keyword : public Token {
     Keyword(KeywordType keywordType);
 };
 
+enum DelimiterType {
+    SEMICOLON,
+    COMMA,
+    PARANTHESES_OPEN,
+    PARANTHESIS_CLOSE,
+    BRACE_OPEN,
+    BRACE_CLOSE,
+    SQUARE_OPEN,
+    SQUARE_CLOSE
+};
+
+class Delimiter : public Token {
+  public:
+    DelimiterType delimiterType;
+    Delimiter(DelimiterType delimiterType);
+};
+
 class Identifier : public Token {
   public:
     std::string identifier_name;
@@ -83,6 +104,10 @@ class IntegerLiteral : public Token {
 };
 
 class StringLiteral : public Token {
+    std::string value;
+};
+
+class UnidentifiedToken : public Token {
     std::string value;
 };
 
