@@ -70,11 +70,12 @@ enum KeywordType {
     FALSE,
     BREAK,
     CONTINUE,
-    RETURN
+    RETURN,
+    VOID
 };
 const std::string KeywordNames[] = {
-    "int",  "bool", "string", "float", "for",      "while", "if",
-    "else", "true", "false",  "break", "continue", "return"};
+    "int",  "bool", "string", "float", "for",      "while",  "if",
+    "else", "true", "false",  "break", "continue", "return", "void"};
 
 class Keyword : public Token {
   public:

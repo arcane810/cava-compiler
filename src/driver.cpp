@@ -25,7 +25,7 @@ int main(int argc, char *argv[]) {
 
         case KEYWORD:
             std::cout << KeywordNames[(int)((Keyword *)newToken)->keywordType]
-                      << "hhhhj\n";
+                      << "\n";
             break;
         case IDENTIFIER:
             std::cout << ((Identifier *)newToken)->identifier_name << "\n";

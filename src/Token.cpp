@@ -54,6 +54,8 @@ Token *resolveIdentifier(std::string id) {
         return new Keyword(CONTINUE);
     } else if (id == "return") {
         return new Keyword(RETURN);
+    } else if (id == "void") {
+        return new Keyword(VOID);
     } else {
         return new Identifier(id);
     }
