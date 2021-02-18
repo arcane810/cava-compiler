@@ -1,6 +1,8 @@
+#pragma once
 #include "Token.hpp"
 #include <fstream>
 #include <iostream>
+#include <utility>
 #include <vector>
 
 enum State {
@@ -14,9 +16,11 @@ enum State {
     MUL_STATE,
     DIV_STATE,
     MOD_STATE,
-    OPEN_STRING,
+    OPEN_STRING_STATE,
     PIPE_STATE,
     AMP_STATE,
+    OR_STATE,
+    AND_STATE,
     ASSIGN_STATE,
     GREATER_STATE,
     LESSER_STATE,
@@ -30,11 +34,17 @@ enum State {
     MUL_EQUAL_STATE,
     DIV_EQUAL_STATE,
     MOD_EQUAL_STATE,
+    GREATER_EQUAL_STATE,
+    LESSER_EQUAL_STATE,
     COMMENT_SINGLE_STATE,
     COMMENT_MULTI_STATE,
     COMMENT_MULTI_PSEUDOEND_STATE,
     EQUAL_TO_STATE,
-    NOT_EQUAL_TO_STATE
+    NOT_EQUAL_TO_STATE,
+    TERTIARY_Q_STATE,
+    TERTIARY_C_STATE,
+    OPEN_STRING_ESCAPE_STATE,
+    CLOSE_STRING_STATE,
 };
 
 class Lexer {
@@ -43,6 +53,8 @@ class Lexer {
     bool done;
     int line_number;
     int char_number;
+    int token_start_line_number;
+    int token_start_char_number;
     State state;
     std::string scanned_string;
     void consumeWhitespace();
@@ -50,6 +62,7 @@ class Lexer {
     void handleStartState();
 
   public:
+    std::pair<int, int> getTokenStartPosition();
     Lexer(FILE *inputFile);
     Token *nextToken();
 };

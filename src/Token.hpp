@@ -9,7 +9,7 @@ enum TokenType {
     FLOATING_POINT_LITERAL,
     INTEGER_LITERAL,
     DELIMITER,
-    UNIDENTIFIED_TOKEN
+    ERROR_TOKEN
 };
 
 class Token {
@@ -41,17 +41,20 @@ enum OperatorType {
     BOOL_NOT,
     GREATER,
     LESSER,
-    GREAT_EQUAL,
-    LESS_EQUAL,
+    GREATER_EQUAL,
+    LESSER_EQUAL,
     TERTIARY_Q,
     TERTIARY_C
 };
 
+const std::string OperatorNames[] = {
+    "+",  "-",  "*",  "/",  "%",  "=", "==", "!=", "+=", "-=", "*=", "/=",
+    "%=", "++", "--", "&&", "||", "!", ">",  "<",  ">=", "<=", "?",  ":"};
+
 class Operator : public Token {
   public:
     OperatorType operatorType;
-    std::string operatorString;
-    Operator(OperatorType operatorType, std::string operatorString);
+    Operator(OperatorType operatorType);
 };
 
 enum KeywordType {
@@ -66,8 +69,12 @@ enum KeywordType {
     TRUE,
     FALSE,
     BREAK,
-    CONTINUE
+    CONTINUE,
+    RETURN
 };
+const std::string KeywordNames[] = {
+    "int",  "bool", "string", "float", "for",      "while", "if",
+    "else", "true", "false",  "break", "continue", "return"};
 
 class Keyword : public Token {
   public:
@@ -79,12 +86,13 @@ enum DelimiterType {
     SEMICOLON,
     COMMA,
     PARANTHESES_OPEN,
-    PARANTHESIS_CLOSE,
+    PARANTHESES_CLOSE,
     BRACE_OPEN,
     BRACE_CLOSE,
     SQUARE_OPEN,
     SQUARE_CLOSE
 };
+const std::string DelimiterNames[] = {";", ",", "(", ")", "{", "}", "[", "]"};
 
 class Delimiter : public Token {
   public:
@@ -99,7 +107,9 @@ class Identifier : public Token {
 };
 
 class FloatingPointLiteral : public Token {
+  public:
     long double value;
+    FloatingPointLiteral(long double value);
 };
 
 class IntegerLiteral : public Token {
@@ -109,12 +119,17 @@ class IntegerLiteral : public Token {
 };
 
 class StringLiteral : public Token {
+  public:
     std::string value;
+    StringLiteral(std::string value);
 };
 
-class UnidentifiedToken : public Token {
-    std::string value;
+class ErrorToken : public Token {
+  public:
+    std::string error_message;
+    ErrorToken(std::string error_message);
 };
 
 Token *resolveIdentifier(std::string id);
 Token *resolveInteger(std::string integer_string);
+Token *resolveFloat(std::string float_string);

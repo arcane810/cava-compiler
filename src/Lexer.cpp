@@ -31,13 +31,17 @@ Lexer::Lexer(FILE *inputFile) : inputFile(inputFile) {
     state = START_STATE;
 }
 
+std::pair<int, int> Lexer::getTokenStartPosition() {
+    return std::make_pair(token_start_line_number, token_start_char_number);
+}
+
 Token *Lexer::nextToken() {
     if (last_scanned == EOF) {
         done = true;
         return NULL;
     }
     Token *newToken = consumeCharacter();
-    while (newToken == NULL) {
+    while (newToken == NULL && last_scanned != EOF) {
         newToken = consumeCharacter();
     }
     return newToken;
@@ -56,8 +60,6 @@ Token *Lexer::consumeCharacter() {
         } else {
             state = START_STATE;
             newToken = resolveIdentifier(scanned_string);
-            scanned_string = "";
-            scanned_string += last_scanned;
             return newToken;
         }
         break;
@@ -68,11 +70,12 @@ Token *Lexer::consumeCharacter() {
         } else if (last_scanned == '.') {
             scanned_string += last_scanned;
             state = TEMP_FLOAT_STATE;
+        } else if (isalpha(last_scanned)) {
+            state = ERROR_STATE;
+            scanned_string += last_scanned;
         } else {
             state = START_STATE;
             newToken = resolveInteger(scanned_string);
-            scanned_string = "";
-            scanned_string += last_scanned;
             return newToken;
         }
         break;
@@ -80,7 +83,21 @@ Token *Lexer::consumeCharacter() {
         if (isdigit(last_scanned)) {
             state = FLOAT_STATE;
             scanned_string += last_scanned;
-        } else if (last_scanned) {
+        } else {
+            state = ERROR_STATE;
+            scanned_string += last_scanned;
+        }
+        break;
+    case FLOAT_STATE:
+        if (isdigit(last_scanned)) {
+            scanned_string += last_scanned;
+        } else if (isalpha(last_scanned)) {
+            state = ERROR_STATE;
+            scanned_string += last_scanned;
+        } else {
+            state = START_STATE;
+            newToken = resolveFloat(scanned_string);
+            return newToken;
         }
         break;
     case ADD_STATE:
@@ -92,9 +109,7 @@ Token *Lexer::consumeCharacter() {
             scanned_string += last_scanned;
         } else {
             state = START_STATE;
-            newToken = new Operator(ADDITION, scanned_string);
-            scanned_string = "";
-            scanned_string += last_scanned;
+            newToken = new Operator(ADDITION);
             return newToken;
         }
         break;
@@ -107,9 +122,7 @@ Token *Lexer::consumeCharacter() {
             scanned_string += last_scanned;
         } else {
             state = START_STATE;
-            newToken = new Operator(SUBTRACTION, scanned_string);
-            scanned_string = "";
-            scanned_string += last_scanned;
+            newToken = new Operator(SUBTRACTION);
             return newToken;
         }
         break;
@@ -119,9 +132,7 @@ Token *Lexer::consumeCharacter() {
             scanned_string += last_scanned;
         } else {
             state = START_STATE;
-            newToken = new Operator(MULTIPLICATION, scanned_string);
-            scanned_string = "";
-            scanned_string += last_scanned;
+            newToken = new Operator(MULTIPLICATION);
             return newToken;
         }
         break;
@@ -137,10 +148,25 @@ Token *Lexer::consumeCharacter() {
             scanned_string = "";
         } else {
             state = START_STATE;
-            newToken = new Operator(DIVISION, scanned_string);
-            scanned_string = "";
-            scanned_string += last_scanned;
+            newToken = new Operator(DIVISION);
             return newToken;
+        }
+        break;
+    case COMMENT_SINGLE_STATE:
+        if (last_scanned == '\n') {
+            state = START_STATE;
+        }
+        break;
+    case COMMENT_MULTI_STATE:
+        if (last_scanned == '*') {
+            state = COMMENT_MULTI_PSEUDOEND_STATE;
+        }
+        break;
+    case COMMENT_MULTI_PSEUDOEND_STATE:
+        if (last_scanned == '/') {
+            state = START_STATE;
+        } else if (last_scanned != '*') {
+            state = COMMENT_MULTI_STATE;
         }
         break;
     case MOD_STATE:
@@ -149,9 +175,7 @@ Token *Lexer::consumeCharacter() {
             scanned_string += last_scanned;
         } else {
             state = START_STATE;
-            newToken = new Operator(MODULO, scanned_string);
-            scanned_string = "";
-            scanned_string += last_scanned;
+            newToken = new Operator(MODULO);
             return newToken;
         }
         break;
@@ -161,9 +185,7 @@ Token *Lexer::consumeCharacter() {
             scanned_string += last_scanned;
         } else {
             state = START_STATE;
-            newToken = new Operator(ASSIGNMENT, scanned_string);
-            scanned_string = "";
-            scanned_string += last_scanned;
+            newToken = new Operator(ASSIGNMENT);
             return newToken;
         }
         break;
@@ -173,63 +195,199 @@ Token *Lexer::consumeCharacter() {
             scanned_string += last_scanned;
         } else {
             state = START_STATE;
-            newToken = new Operator(BOOL_NOT, scanned_string);
-            scanned_string = "";
-            scanned_string += last_scanned;
+            newToken = new Operator(BOOL_NOT);
             return newToken;
         }
         break;
     case ADD_EQUAL_STATE:
         state = START_STATE;
-        newToken = new Operator(ADD_EQUAL, scanned_string);
-        scanned_string = "";
-        scanned_string += last_scanned;
+        newToken = new Operator(ADD_EQUAL);
         return newToken;
         break;
     case SUB_EQUAL_STATE:
         state = START_STATE;
-        newToken = new Operator(SUB_EQUAL, scanned_string);
-        scanned_string = "";
-        scanned_string += last_scanned;
+        newToken = new Operator(SUB_EQUAL);
         return newToken;
         break;
     case MUL_EQUAL_STATE:
         state = START_STATE;
-        newToken = new Operator(MUL_EQUAL, scanned_string);
-        scanned_string = "";
-        scanned_string += last_scanned;
+        newToken = new Operator(MUL_EQUAL);
         return newToken;
         break;
     case DIV_EQUAL_STATE:
         state = START_STATE;
-        newToken = new Operator(DIV_EQUAL, scanned_string);
-        scanned_string = "";
-        scanned_string += last_scanned;
+        newToken = new Operator(DIV_EQUAL);
         return newToken;
         break;
     case MOD_EQUAL_STATE:
         state = START_STATE;
-        newToken = new Operator(MOD_EQUAL, scanned_string);
-        scanned_string = "";
-        scanned_string += last_scanned;
+        newToken = new Operator(MOD_EQUAL);
         return newToken;
         break;
     case EQUAL_TO_STATE:
         state = START_STATE;
-        newToken = new Operator(EQUAL_TO, scanned_string);
-        scanned_string = "";
-        scanned_string += last_scanned;
+        newToken = new Operator(EQUAL_TO);
         return newToken;
         break;
     case NOT_EQUAL_TO_STATE:
         state = START_STATE;
-        newToken = new Operator(NOT_EQUAL_TO, scanned_string);
-        scanned_string = "";
-        scanned_string += last_scanned;
+        newToken = new Operator(NOT_EQUAL_TO);
         return newToken;
         break;
+    case GREATER_STATE:
+        if (last_scanned == '=') {
+            state = GREATER_EQUAL_STATE;
+            scanned_string += last_scanned;
+        } else {
+            state = START_STATE;
+            newToken = new Operator(GREATER);
+            return newToken;
+        }
+        break;
+    case LESSER_STATE:
+        if (last_scanned == '=') {
+            state = LESSER_EQUAL_STATE;
+            scanned_string += last_scanned;
+        } else {
+            state = START_STATE;
+            newToken = new Operator(LESSER);
+            return newToken;
+        }
+        break;
+    case GREATER_EQUAL_STATE:
+        state = START_STATE;
+        newToken = new Operator(GREATER_EQUAL);
+        return newToken;
+        break;
+    case LESSER_EQUAL_STATE:
+        state = START_STATE;
+        newToken = new Operator(LESSER_EQUAL);
+        return newToken;
+        break;
+    case AMP_STATE:
+        if (last_scanned == '&') {
+            state = AND_STATE;
+            scanned_string += last_scanned;
+        } else {
+            state = ERROR_STATE;
+            scanned_string += last_scanned;
+        }
+        break;
+    case PIPE_STATE:
+        if (last_scanned == '|') {
+            state = OR_STATE;
+            scanned_string += last_scanned;
+        } else {
+            state = ERROR_STATE;
+            scanned_string += last_scanned;
+        }
+        break;
+    case AND_STATE:
+        state = START_STATE;
+        newToken = new Operator(BOOL_AND);
+        return newToken;
+        break;
+    case OR_STATE:
+        state = START_STATE;
+        newToken = new Operator(BOOL_OR);
+        return newToken;
+        break;
+    case OPEN_STRING_STATE:
+        if (last_scanned == '\"') {
+            state = CLOSE_STRING_STATE;
+        } else if (last_scanned == '\\') {
+            state = OPEN_STRING_ESCAPE_STATE;
+        } else {
+            scanned_string += last_scanned;
+        }
+        break;
+    case CLOSE_STRING_STATE:
+        state = START_STATE;
+        newToken = new StringLiteral(scanned_string);
+        return newToken;
+        break;
+    case OPEN_STRING_ESCAPE_STATE:
+        state = OPEN_STRING_STATE;
+        if (last_scanned == 'a') {
+            scanned_string += '\a';
+        } else if (last_scanned == 'b') {
+            scanned_string += '\b';
+        } else if (last_scanned == 'f') {
+            scanned_string += '\f';
+        } else if (last_scanned == 'n') {
+            scanned_string += '\n';
+        } else if (last_scanned == 'r') {
+            scanned_string += '\r';
+        } else if (last_scanned == 't') {
+            scanned_string += '\t';
+        } else if (last_scanned == 'v') {
+            scanned_string += '\v';
+        } else if (last_scanned == '\'') {
+            scanned_string += '\'';
+        } else if (last_scanned == '\"') {
+            scanned_string += '\"';
+        } else if (last_scanned == '\\') {
+            scanned_string += '\\';
+        } else {
+            state = ERROR_STATE;
+            scanned_string = "";
+        }
+        break;
+    case TERTIARY_Q_STATE:
+        state = START_STATE;
+        newToken = new Operator(TERTIARY_Q);
+        return newToken;
+        break;
+    case TERTIARY_C_STATE:
+        state = START_STATE;
+        newToken = new Operator(TERTIARY_C);
+        return newToken;
+        break;
+    case DELIM_STATE:
+        state = START_STATE;
+        switch (scanned_string[0]) {
+        case (';'):
+            newToken = new Delimiter(SEMICOLON);
+            break;
+        case (','):
+            newToken = new Delimiter(COMMA);
+            break;
+        case ('('):
+            newToken = new Delimiter(PARANTHESES_OPEN);
+            break;
+        case (')'):
+            newToken = new Delimiter(PARANTHESES_CLOSE);
+            break;
+        case ('['):
+            newToken = new Delimiter(SQUARE_OPEN);
+            break;
+        case (']'):
+            newToken = new Delimiter(SQUARE_CLOSE);
+            break;
+        case ('{'):
+            newToken = new Delimiter(BRACE_OPEN);
+            break;
+        case ('}'):
+            newToken = new Delimiter(BRACE_CLOSE);
+            break;
+        }
+        return newToken;
+        break;
+    case ERROR_STATE:
+        if (isdigit(last_scanned) || isalpha(last_scanned)) {
+            scanned_string += last_scanned;
+        } else {
+            state = START_STATE;
+            return new ErrorToken("Invalid Token: " + scanned_string);
+        }
+        break;
     }
+
+    if (last_scanned == EOF)
+        return NULL;
+
     last_scanned = fgetc(inputFile);
+    char_number++;
     return NULL;
 }
 
@@ -237,7 +395,11 @@ void Lexer::handleStartState() {
     consumeWhitespace();
     scanned_string = "";
     scanned_string += last_scanned;
-    if (isalpha(last_scanned) || last_scanned == '_') {
+    token_start_line_number = line_number;
+    token_start_char_number = char_number;
+    if (last_scanned == EOF) {
+        ;
+    } else if (isalpha(last_scanned) || last_scanned == '_') {
         state = IDENTIFIER_STATE;
     } else if (isdigit(last_scanned)) {
         state = INTEGER_STATE;
@@ -252,7 +414,8 @@ void Lexer::handleStartState() {
     } else if (last_scanned == '%') {
         state = MOD_STATE;
     } else if (last_scanned == '\"') {
-        state = OPEN_STRING;
+        state = OPEN_STRING_STATE;
+        scanned_string = "";
     } else if (last_scanned == '|') {
         state = PIPE_STATE;
     } else if (last_scanned == '&') {
@@ -267,6 +430,10 @@ void Lexer::handleStartState() {
         state = NOT_STATE;
     } else if (isDelim(last_scanned)) {
         state = DELIM_STATE;
+    } else if (last_scanned == '?') {
+        state = TERTIARY_Q_STATE;
+    } else if (last_scanned == ':') {
+        state = TERTIARY_C_STATE;
     } else {
         state = ERROR_STATE;
     }
