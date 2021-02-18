@@ -45,6 +45,7 @@ enum State {
     TERTIARY_C_STATE,
     OPEN_STRING_ESCAPE_STATE,
     CLOSE_STRING_STATE,
+    EOF_STATE
 };
 
 class Lexer {

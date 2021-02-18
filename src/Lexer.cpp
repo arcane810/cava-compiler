@@ -36,12 +36,9 @@ std::pair<int, int> Lexer::getTokenStartPosition() {
 }
 
 Token *Lexer::nextToken() {
-    if (last_scanned == EOF) {
-        done = true;
-        return NULL;
-    }
+
     Token *newToken = consumeCharacter();
-    while (newToken == NULL && last_scanned != EOF) {
+    while (newToken == NULL && state != EOF_STATE) {
         newToken = consumeCharacter();
     }
     return newToken;
@@ -50,6 +47,9 @@ Token *Lexer::nextToken() {
 Token *Lexer::consumeCharacter() {
     Token *newToken = NULL;
     switch (state) {
+    case EOF_STATE:
+        return NULL;
+        break;
     case START_STATE:
         handleStartState();
         break;
@@ -126,6 +126,16 @@ Token *Lexer::consumeCharacter() {
             return newToken;
         }
         break;
+    case INCREMENT_STATE:
+        state = START_STATE;
+        newToken = new Operator(INCREMENT);
+        return newToken;
+        break;
+    case DECREMENT_STATE:
+        state = START_STATE;
+        newToken = new Operator(DECREMENT);
+        return newToken;
+        break;
     case MUL_STATE:
         if (last_scanned == '=') {
             state = MUL_EQUAL_STATE;
@@ -155,6 +165,7 @@ Token *Lexer::consumeCharacter() {
     case COMMENT_SINGLE_STATE:
         if (last_scanned == '\n') {
             state = START_STATE;
+            line_number++;
         }
         break;
     case COMMENT_MULTI_STATE:
@@ -398,7 +409,7 @@ void Lexer::handleStartState() {
     token_start_line_number = line_number;
     token_start_char_number = char_number;
     if (last_scanned == EOF) {
-        ;
+        state = EOF_STATE;
     } else if (isalpha(last_scanned) || last_scanned == '_') {
         state = IDENTIFIER_STATE;
     } else if (isdigit(last_scanned)) {
