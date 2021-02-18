@@ -20,42 +20,40 @@ int main(int argc, char *argv[]) {
     while (newToken != NULL) {
         // std::cout << "IN LOOP\n";
         std::pair<int, int> pos = lexer.getTokenStartPosition();
-        std::cout << "Token At " << pos.first << ":" << pos.second << " ";
+        std::cout << "Token At " << pos.first << ":" << pos.second << " < "
+                  << TokenTypeNames[(int)newToken->tokenType] << ", ";
         switch (newToken->tokenType) {
-
         case KEYWORD:
-            std::cout << KeywordNames[(int)((Keyword *)newToken)->keywordType]
-                      << "\n";
+            std::cout << KeywordNames[(int)((Keyword *)newToken)->keywordType];
             break;
         case IDENTIFIER:
-            std::cout << ((Identifier *)newToken)->identifier_name << "\n";
+            std::cout << ((Identifier *)newToken)->identifier_name;
             break;
         case INTEGER_LITERAL:
-            std::cout << ((IntegerLiteral *)newToken)->value << "\n";
+            std::cout << ((IntegerLiteral *)newToken)->value;
             break;
         case FLOATING_POINT_LITERAL:
             std::cout << std::setprecision(13)
-                      << ((FloatingPointLiteral *)newToken)->value << "\n";
+                      << ((FloatingPointLiteral *)newToken)->value;
             break;
         case OPERATOR:
             std::cout
-                << OperatorNames[(int)((Operator *)newToken)->operatorType]
-                << "\n";
+                << OperatorNames[(int)((Operator *)newToken)->operatorType];
             break;
         case STRING_LITERAL:
-            std::cout << ((StringLiteral *)newToken)->value << "\n";
+            std::cout << ((StringLiteral *)newToken)->value;
             break;
         case DELIMITER:
             std::cout
-                << DelimiterNames[(int)((Delimiter *)newToken)->delimiterType]
-                << "\n";
+                << DelimiterNames[(int)((Delimiter *)newToken)->delimiterType];
             break;
         case ERROR_TOKEN:
-            std::cout << ((ErrorToken *)newToken)->error_message << "\n";
+            std::cout << ((ErrorToken *)newToken)->error_message;
             break;
         default:
             break;
         }
+        std::cout << " >\n";
         newToken = lexer.nextToken();
     }
 }

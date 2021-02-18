@@ -12,6 +12,15 @@ enum TokenType {
     ERROR_TOKEN
 };
 
+const std::string TokenTypeNames[] = {"Identifier",
+                                      "Operator",
+                                      "Keyword",
+                                      "String Literal",
+                                      "Floating Point Literal",
+                                      "Integer Literal",
+                                      "Delimiter",
+                                      "Error"};
+
 class Token {
   public:
     int char_number;
