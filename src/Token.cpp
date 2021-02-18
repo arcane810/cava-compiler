@@ -11,6 +11,10 @@ Identifier::Identifier(std::string identifier_name)
 IntegerLiteral::IntegerLiteral(int64_t value)
     : Token(INTEGER_LITERAL), value(value) {}
 
+Operator::Operator(OperatorType operatorType, std::string operatorString)
+    : Token(OPERATOR), operatorType(operatorType),
+      operatorString(operatorString) {}
+
 Token *resolveIdentifier(std::string id) {
     if (id == "int") {
         return new Keyword(INT);

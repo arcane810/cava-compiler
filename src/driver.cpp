@@ -24,6 +24,10 @@ int main(int argc, char *argv[]) {
         case INTEGER_LITERAL:
             std::cout << ((IntegerLiteral *)newToken)->value << "\n";
             break;
+        case OPERATOR:
+            std::cout << ((Operator *)newToken)->operatorString << "\n";
+            break;
+
         default:
             break;
         }

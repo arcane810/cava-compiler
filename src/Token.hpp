@@ -25,10 +25,10 @@ enum OperatorType {
     SUBTRACTION,
     MULTIPLICATION,
     DIVISION,
+    MODULO,
     ASSIGNMENT,
     EQUAL_TO,
-    NOT_EQUAL,
-    MODULO,
+    NOT_EQUAL_TO,
     ADD_EQUAL,
     SUB_EQUAL,
     MUL_EQUAL,
@@ -48,7 +48,10 @@ enum OperatorType {
 };
 
 class Operator : public Token {
+  public:
     OperatorType operatorType;
+    std::string operatorString;
+    Operator(OperatorType operatorType, std::string operatorString);
 };
 
 enum KeywordType {
