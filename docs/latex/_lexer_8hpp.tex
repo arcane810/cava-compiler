@@ -1,0 +1,68 @@
+\hypertarget{_lexer_8hpp}{}\doxysection{src/\+Lexer.hpp File Reference}
+\label{_lexer_8hpp}\index{src/Lexer.hpp@{src/Lexer.hpp}}
+{\ttfamily \#include \char`\"{}Token.\+hpp\char`\"{}}\newline
+{\ttfamily \#include $<$fstream$>$}\newline
+{\ttfamily \#include $<$iostream$>$}\newline
+{\ttfamily \#include $<$utility$>$}\newline
+{\ttfamily \#include $<$vector$>$}\newline
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{class_lexer}{Lexer}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{_lexer_8hpp_a5d74787dedbc4e11c1ab15bf487e61f8}\label{_lexer_8hpp_a5d74787dedbc4e11c1ab15bf487e61f8}} 
+enum {\bfseries State} \{ \newline
+{\bfseries START\+\_\+\+STATE}
+, {\bfseries IDENTIFIER\+\_\+\+STATE}
+, {\bfseries INTEGER\+\_\+\+STATE}
+, {\bfseries TEMP\+\_\+\+FLOAT\+\_\+\+STATE}
+, \newline
+{\bfseries FLOAT\+\_\+\+STATE}
+, {\bfseries ADD\+\_\+\+STATE}
+, {\bfseries SUB\+\_\+\+STATE}
+, {\bfseries MUL\+\_\+\+STATE}
+, \newline
+{\bfseries DIV\+\_\+\+STATE}
+, {\bfseries MOD\+\_\+\+STATE}
+, {\bfseries OPEN\+\_\+\+STRING\+\_\+\+STATE}
+, {\bfseries PIPE\+\_\+\+STATE}
+, \newline
+{\bfseries AMP\+\_\+\+STATE}
+, {\bfseries OR\+\_\+\+STATE}
+, {\bfseries AND\+\_\+\+STATE}
+, {\bfseries ASSIGN\+\_\+\+STATE}
+, \newline
+{\bfseries GREATER\+\_\+\+STATE}
+, {\bfseries LESSER\+\_\+\+STATE}
+, {\bfseries NOT\+\_\+\+STATE}
+, {\bfseries DELIM\+\_\+\+STATE}
+, \newline
+{\bfseries ERROR\+\_\+\+STATE}
+, {\bfseries INCREMENT\+\_\+\+STATE}
+, {\bfseries DECREMENT\+\_\+\+STATE}
+, {\bfseries ADD\+\_\+\+EQUAL\+\_\+\+STATE}
+, \newline
+{\bfseries SUB\+\_\+\+EQUAL\+\_\+\+STATE}
+, {\bfseries MUL\+\_\+\+EQUAL\+\_\+\+STATE}
+, {\bfseries DIV\+\_\+\+EQUAL\+\_\+\+STATE}
+, {\bfseries MOD\+\_\+\+EQUAL\+\_\+\+STATE}
+, \newline
+{\bfseries GREATER\+\_\+\+EQUAL\+\_\+\+STATE}
+, {\bfseries LESSER\+\_\+\+EQUAL\+\_\+\+STATE}
+, {\bfseries COMMENT\+\_\+\+SINGLE\+\_\+\+STATE}
+, {\bfseries COMMENT\+\_\+\+MULTI\+\_\+\+STATE}
+, \newline
+{\bfseries COMMENT\+\_\+\+MULTI\+\_\+\+PSEUDOEND\+\_\+\+STATE}
+, {\bfseries EQUAL\+\_\+\+TO\+\_\+\+STATE}
+, {\bfseries NOT\+\_\+\+EQUAL\+\_\+\+TO\+\_\+\+STATE}
+, {\bfseries TERTIARY\+\_\+\+Q\+\_\+\+STATE}
+, \newline
+{\bfseries TERTIARY\+\_\+\+C\+\_\+\+STATE}
+, {\bfseries OPEN\+\_\+\+STRING\+\_\+\+ESCAPE\+\_\+\+STATE}
+, {\bfseries CLOSE\+\_\+\+STRING\+\_\+\+STATE}
+, {\bfseries EOF\+\_\+\+STATE}
+ \}
+\end{DoxyCompactItemize}

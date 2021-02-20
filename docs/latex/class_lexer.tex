@@ -1,0 +1,52 @@
+\hypertarget{class_lexer}{}\doxysection{Lexer Class Reference}
+\label{class_lexer}\index{Lexer@{Lexer}}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+std\+::pair$<$ int, int $>$ \mbox{\hyperlink{class_lexer_af7615b3fe04ab1d821b055f7595bf2ba}{get\+Token\+Start\+Position}} ()
+\item 
+\mbox{\hyperlink{class_lexer_a6b295b171b466e4e90e87021b00e5abb}{Lexer}} (FILE $\ast$input\+File)
+\item 
+\mbox{\hyperlink{class_token}{Token}} $\ast$ \mbox{\hyperlink{class_lexer_a37b769e7d968b3d9c32836c4dd661528}{next\+Token}} ()
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_lexer_a6b295b171b466e4e90e87021b00e5abb}\label{class_lexer_a6b295b171b466e4e90e87021b00e5abb}} 
+\index{Lexer@{Lexer}!Lexer@{Lexer}}
+\index{Lexer@{Lexer}!Lexer@{Lexer}}
+\doxysubsubsection{\texorpdfstring{Lexer()}{Lexer()}}
+{\footnotesize\ttfamily Lexer\+::\+Lexer (\begin{DoxyParamCaption}\item[{FILE $\ast$}]{input\+File }\end{DoxyParamCaption})}
+
+Constructor for a lexer object. 
+\begin{DoxyParams}{Parameters}
+{\em input\+File} & input stream of file to tokenize. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_lexer_af7615b3fe04ab1d821b055f7595bf2ba}\label{class_lexer_af7615b3fe04ab1d821b055f7595bf2ba}} 
+\index{Lexer@{Lexer}!getTokenStartPosition@{getTokenStartPosition}}
+\index{getTokenStartPosition@{getTokenStartPosition}!Lexer@{Lexer}}
+\doxysubsubsection{\texorpdfstring{getTokenStartPosition()}{getTokenStartPosition()}}
+{\footnotesize\ttfamily std\+::pair$<$ int, int $>$ Lexer\+::get\+Token\+Start\+Position (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+A function that returns the position of a token in the input stream \begin{DoxyReturn}{Returns}
+A pair with the values as the line number and character number respectively in the input stream 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_lexer_a37b769e7d968b3d9c32836c4dd661528}\label{class_lexer_a37b769e7d968b3d9c32836c4dd661528}} 
+\index{Lexer@{Lexer}!nextToken@{nextToken}}
+\index{nextToken@{nextToken}!Lexer@{Lexer}}
+\doxysubsubsection{\texorpdfstring{nextToken()}{nextToken()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_token}{Token}} $\ast$ Lexer\+::next\+Token (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+A function that returns a pointer to next token object in input stream \begin{DoxyReturn}{Returns}
+A pointer to next token. Returns NULL if no token is left. 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+src/\mbox{\hyperlink{_lexer_8hpp}{Lexer.\+hpp}}\item 
+src/Lexer.\+cpp\end{DoxyCompactItemize}

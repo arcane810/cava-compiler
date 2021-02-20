@@ -1,3 +1,5 @@
+/** @file */
+
 #pragma once
 #include "Token.hpp"
 #include <fstream>
@@ -5,6 +7,7 @@
 #include <utility>
 #include <vector>
 
+// enum containing states
 enum State {
     START_STATE,
     IDENTIFIER_STATE,
@@ -48,6 +51,7 @@ enum State {
     EOF_STATE
 };
 
+// The Lexer Class
 class Lexer {
     FILE *inputFile;
     char last_scanned;
@@ -58,12 +62,37 @@ class Lexer {
     int token_start_char_number;
     State state;
     std::string scanned_string;
+    /**
+     *  A function that consumes whitespace characters until the next token
+     * begins
+     */
     void consumeWhitespace();
+    /**
+     *  A function that consumes characters until a token is identified.
+     * @return A pointer to a token object if last consumed character is at the
+     * end of the token, else NULL.
+     */
     Token *consumeCharacter();
+    /**
+     * A function that handles the first consumed character of a token.
+     */
     void handleStartState();
 
   public:
+    /**
+     * A function that returns the position of a token in the input stream
+     * @return A pair with the values as the line number and character number
+     * respectively in the input stream
+     */
     std::pair<int, int> getTokenStartPosition();
+    /**
+     * Constructor for a lexer object.
+     * @param inputFile input stream of file to tokenize.
+     */
     Lexer(FILE *inputFile);
+    /**
+     * A function that returns a pointer to next token object in input stream
+     * @return A pointer to next token. Returns NULL if no token is left.
+     */
     Token *nextToken();
 };

@@ -1,0 +1,73 @@
+Token At 5:1 < Keyword, int >
+Token At 5:4 < Identifier, fact >
+Token At 5:8 < Delimiter, ( >
+Token At 5:9 < Keyword, int >
+Token At 5:12 < Identifier, n >
+Token At 5:13 < Delimiter, ) >
+Token At 5:14 < Delimiter, { >
+Token At 6:5 < Keyword, if >
+Token At 6:7 < Delimiter, ( >
+Token At 6:8 < Identifier, n >
+Token At 6:9 < Operator, <= >
+Token At 6:11 < Integer Literal, 1 >
+Token At 6:12 < Delimiter, ) >
+Token At 7:9 < Keyword, return >
+Token At 7:15 < Integer Literal, 1 >
+Token At 7:16 < Delimiter, ; >
+Token At 8:5 < Keyword, else >
+Token At 8:9 < Keyword, return >
+Token At 8:15 < Identifier, n >
+Token At 8:16 < Operator, * >
+Token At 8:17 < Identifier, fact >
+Token At 8:21 < Delimiter, ( >
+Token At 8:22 < Identifier, n >
+Token At 8:23 < Operator, - >
+Token At 8:24 < Integer Literal, 1 >
+Token At 8:25 < Delimiter, ) >
+Token At 8:26 < Delimiter, ; >
+Token At 9:1 < Delimiter, } >
+Token At 10:1 < Keyword, void >
+Token At 10:5 < Identifier, main >
+Token At 10:9 < Delimiter, ( >
+Token At 10:10 < Keyword, void >
+Token At 10:14 < Delimiter, ) >
+Token At 10:15 < Delimiter, { >
+Token At 11:5 < Keyword, int >
+Token At 11:8 < Identifier, x >
+Token At 11:9 < Delimiter, ; >
+Token At 12:5 < Identifier, x >
+Token At 12:6 < Operator, = >
+Token At 12:7 < Integer Literal, 1 >
+Token At 12:8 < Delimiter, ; >
+Token At 13:5 < Keyword, while >
+Token At 13:10 < Delimiter, ( >
+Token At 13:11 < Identifier, x >
+Token At 13:12 < Operator, <= >
+Token At 13:14 < Integer Literal, 10 >
+Token At 13:16 < Delimiter, ) >
+Token At 13:17 < Delimiter, { >
+Token At 14:9 < Identifier, write >
+Token At 14:14 < Delimiter, ( >
+Token At 14:15 < Identifier, x >
+Token At 14:16 < Delimiter, ) >
+Token At 14:17 < Delimiter, ; >
+Token At 15:9 < Identifier, write >
+Token At 15:14 < Delimiter, ( >
+Token At 15:15 < Identifier, fact >
+Token At 15:19 < Delimiter, ( >
+Token At 15:20 < Identifier, x >
+Token At 15:21 < Delimiter, ) >
+Token At 15:22 < Delimiter, ) >
+Token At 15:23 < Delimiter, ; >
+Token At 16:9 < Identifier, writeln >
+Token At 16:16 < Delimiter, ( >
+Token At 16:17 < Delimiter, ) >
+Token At 16:18 < Delimiter, ; >
+Token At 17:9 < Identifier, x >
+Token At 17:10 < Operator, = >
+Token At 17:11 < Identifier, x >
+Token At 17:12 < Operator, + >
+Token At 17:13 < Integer Literal, 1 >
+Token At 17:14 < Delimiter, ; >
+Token At 18:5 < Delimiter, } >
+Token At 19:1 < Delimiter, } >

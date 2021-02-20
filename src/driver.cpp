@@ -1,6 +1,10 @@
 #include "Lexer.hpp"
 #include "Token.hpp"
 #include <iomanip>
+/**
+ * The driver function for the lexer. It initializes the lexer object, consumes
+ * and prints tokens produced by the lexer.
+ */
 
 int main(int argc, char *argv[]) {
     if (argc < 2) {
@@ -9,16 +13,20 @@ int main(int argc, char *argv[]) {
     }
 
     FILE *inputFile;
+
+    // Read file name from arguments
     inputFile = fopen(argv[1], "r");
     if (inputFile == NULL) {
         std::cerr << "invalid input file\n";
         return 1;
     }
+
+    // Init Token object.
     Lexer lexer = Lexer(inputFile);
     std::vector<Token *> tokens;
+    // Consume tokens produced
     Token *newToken = lexer.nextToken();
     while (newToken != NULL) {
-        // std::cout << "IN LOOP\n";
         std::pair<int, int> pos = lexer.getTokenStartPosition();
         std::cout << "Token At " << pos.first << ":" << pos.second << " < "
                   << TokenTypeNames[(int)newToken->tokenType] << ", ";

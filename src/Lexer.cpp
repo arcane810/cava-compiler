@@ -11,14 +11,14 @@ bool isDelim(char c) {
 void Lexer::consumeWhitespace() {
     while (last_scanned == ' ' || last_scanned == '\n' ||
            last_scanned == '\t' || last_scanned == '\r') {
+        scanned_string = "";
+        last_scanned = fgetc(inputFile);
         if (last_scanned == ' ' || last_scanned == '\t' || last_scanned == '\r')
             char_number++;
-        else {
+        else if (last_scanned == '\n') {
             char_number = 1;
             line_number++;
         }
-        scanned_string = "";
-        last_scanned = fgetc(inputFile);
     }
 }
 
@@ -165,7 +165,6 @@ Token *Lexer::consumeCharacter() {
     case COMMENT_SINGLE_STATE:
         if (last_scanned == '\n') {
             state = START_STATE;
-            line_number++;
         }
         break;
     case COMMENT_MULTI_STATE:
@@ -308,6 +307,9 @@ Token *Lexer::consumeCharacter() {
             state = CLOSE_STRING_STATE;
         } else if (last_scanned == '\\') {
             state = OPEN_STRING_ESCAPE_STATE;
+        } else if (last_scanned == '\n') {
+            scanned_string = "\"" + scanned_string;
+            state = ERROR_STATE;
         } else {
             scanned_string += last_scanned;
         }
@@ -385,8 +387,13 @@ Token *Lexer::consumeCharacter() {
         return newToken;
         break;
     case ERROR_STATE:
-        if (isdigit(last_scanned) || isalpha(last_scanned)) {
-            scanned_string += last_scanned;
+        if (isdigit(scanned_string.back()) || isalpha(scanned_string.back())) {
+            if (isdigit(last_scanned) || isalpha(last_scanned)) {
+                scanned_string += last_scanned;
+            } else {
+                state = START_STATE;
+                return new ErrorToken("Invalid Token: " + scanned_string);
+            }
         } else {
             state = START_STATE;
             return new ErrorToken("Invalid Token: " + scanned_string);
@@ -398,6 +405,10 @@ Token *Lexer::consumeCharacter() {
         return NULL;
 
     last_scanned = fgetc(inputFile);
+    if (last_scanned == '\n') {
+        line_number++;
+        char_number = 0;
+    }
     char_number++;
     return NULL;
 }
