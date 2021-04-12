@@ -16,9 +16,15 @@ ParseTable::ParseTable(std::string filename) {
             } else if (next_id != " ") {
                 char operation_type = 'g';
                 int next_int;
-                if (next_id[0] == 'r' || next_id[0] == 's') {
+                if (next_id[0] == 'r' || next_id[0] == 's' ||
+                    next_id[0] == 'a') {
                     operation_type = next_id[0];
-                    next_int = stoi(next_id.substr(1, next_id.length() - 1));
+                    if (next_id[0] == 'a') {
+                        next_int = 0;
+                    } else {
+                        next_int =
+                            stoi(next_id.substr(1, next_id.length() - 1));
+                    }
                 } else {
                     next_int = stoi(next_id);
                 }
@@ -26,7 +32,7 @@ ParseTable::ParseTable(std::string filename) {
                     operation_type, next_int};
             }
             // std::cout << current_line << "\t" << current_column << "\t"
-            //           << ((next_id == " ") ? "NONE" : next_id) << "\n";
+            //           << ((next_id == " ") ? "NONE" : next_id) << std::endl;
             current_column++;
         }
         if (current_line > 0)

@@ -77,6 +77,14 @@ const std::string OperatorNames[] = {
     "+",  "-",  "*",  "/",  "%",  "=", "==", "!=", "+=", "-=", "*=", "/=",
     "%=", "++", "--", "&&", "||", "!", ">",  "<",  ">=", "<=", "?",  ":"};
 
+const std::string OperatorTerminalNames[] = {
+    "TK-ADD",        "TK-SUB",        "TK-MUL",        "TK-DIV",
+    "TK-MOD",        "TK-ASSIGN",     "TK-EQUAL",      "TK-NOTEQUAL",
+    "TK-ADD-ASSIGN", "TK-SUB-ASSIGN", "TK-MUL-ASSIGN", "TK-DIV-ASSIGN",
+    "TK-MOD-ASSIGN", "TK-INCREMENT",  "TK-DECREMENT",  "TK-LOGICAL-AND",
+    "TK-LOGICAL-OR", "TK-NOT",        "TK-GREATER",    "TK-LESSER",
+    "TK-GREATEREQ",  "TK-LESSEREQ",   "TK-QUESTION",   "TK-COLON"};
+
 // Class for Operator tokens
 class Operator : public Token {
   public:
@@ -89,6 +97,7 @@ class Operator : public Token {
      * @param operatorType The operator type
      */
     Operator(OperatorType operatorType);
+    std::string to_terminal_string();
 };
 
 // enum for Keyword Types
@@ -106,13 +115,20 @@ enum KeywordType {
     BREAK,
     CONTINUE,
     RETURN,
-    VOID
+    VOID,
+    MAIN,
+    DO
 };
 
 // String array for enum to string mapping of keyword types
 const std::string KeywordNames[] = {
-    "int",  "bool", "string", "float", "for",      "while",  "if",
-    "else", "true", "false",  "break", "continue", "return", "void"};
+    "int",  "bool",  "string", "float",    "for",    "while", "if",   "else",
+    "true", "false", "break",  "continue", "return", "void",  "main", "do"};
+
+const std::string KeywordTerminalNames[] = {
+    "TK-INT",    "TK-BOOL", "TK-STRING", "TK-FLOAT", "TK-FOR",   "TK-WHILE",
+    "TK-IF",     "TK-ELSE", "TK-TRUE",   "TK-FALSE", "TK-BREAK", "TK-CONTINUE",
+    "TK-RETURN", "TK-VOID", "TK-MAIN",   "TK-DO"};
 
 // Class for Keyword tokens
 class Keyword : public Token {
@@ -125,6 +141,7 @@ class Keyword : public Token {
      * @param keywordType The keyword type
      */
     Keyword(KeywordType keywordType);
+    std::string to_terminal_string();
 };
 
 // enum for Delimiter Types
@@ -141,6 +158,9 @@ enum DelimiterType {
 
 // String array for enum to string mapping of delimiter types
 const std::string DelimiterNames[] = {";", ",", "(", ")", "{", "}", "[", "]"};
+const std::string DelimiterTerminalNames[] = {"TK-SC",  "TK-COMMA", "TK-RBO",
+                                              "TK-RBC", "TK-CBO",   "TK-CBC",
+                                              "TK-SBO", "TK-SBC"};
 
 /**
  * Class for Delimiter tokens
@@ -156,6 +176,7 @@ class Delimiter : public Token {
      * @param delimiterType The delimiter type
      */
     Delimiter(DelimiterType delimiterType);
+    std::string to_terminal_string();
 };
 
 /**
@@ -171,6 +192,7 @@ class Identifier : public Token {
      * @param identifier_name The identifier name
      */
     Identifier(std::string identifier_name);
+    std::string to_terminal_string();
 };
 
 /**
@@ -186,6 +208,7 @@ class FloatingPointLiteral : public Token {
      * @param value The value
      */
     FloatingPointLiteral(long double value);
+    std::string to_terminal_string();
 };
 
 /**
@@ -201,6 +224,7 @@ class IntegerLiteral : public Token {
      * @param value The value
      */
     IntegerLiteral(int64_t value);
+    std::string to_terminal_string();
 };
 
 /**
@@ -216,6 +240,7 @@ class StringLiteral : public Token {
      * @param value The string
      */
     StringLiteral(std::string value);
+    std::string to_terminal_string();
 };
 
 /**

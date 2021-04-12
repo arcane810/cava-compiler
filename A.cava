@@ -1,0 +1,55 @@
+int x = 5;
+
+void binexpo(int x, int p){
+    if(p==0) {
+        return 1;
+    }
+    int temp = binexpo(x, p/2);
+    int res = temp*temp;
+    if(p%2) {
+        res *= x;
+    }
+    return res;
+}
+
+
+void main() {
+    x = 5;
+    while(x=5) {
+        5;
+    }
+    c = (5*(6+7)) || 89 && (wtf--) ? 100 : yo;
+    if(x==2){
+        x+30;
+    }
+    else if (lol) {
+
+    }
+    else if (boi){
+
+    } 
+    else if (are){
+
+    }
+    else {
+
+    }
+    if(x){
+        x--;
+    }
+    else if(sed){
+        //yee
+    }
+    else{
+        //not yee
+    }
+    
+    do {
+        sed;
+    } while(10);
+    x = y = 10;
+    for(i = 10; i < 10; i++) {
+        a = binexpo(x, p);
+    }
+    return  3;
+}

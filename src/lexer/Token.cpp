@@ -63,6 +63,10 @@ Token *resolveIdentifier(std::string id) {
         return new Keyword(RETURN);
     } else if (id == "void") {
         return new Keyword(VOID);
+    } else if (id == "main") {
+        return new Keyword(MAIN);
+    } else if (id == "do") {
+        return new Keyword(DO);
     } else {
         return new Identifier(id);
     }
@@ -97,3 +101,24 @@ Token *resolveFloat(std::string float_string) {
     }
     return new FloatingPointLiteral(ans);
 }
+
+std::string Operator::to_terminal_string() {
+    return OperatorTerminalNames[operatorType];
+}
+
+std::string Keyword::to_terminal_string() {
+    return KeywordTerminalNames[keywordType];
+}
+
+std::string Delimiter::to_terminal_string() {
+    return DelimiterTerminalNames[delimiterType];
+}
+
+std::string Identifier::to_terminal_string() { return "TK-VAR-ID"; }
+
+std::string FloatingPointLiteral::to_terminal_string() {
+    return "TK-FLOAT-LITERAL";
+}
+
+std::string IntegerLiteral::to_terminal_string() { return "TK-INT-LITERAL"; }
+std::string StringLiteral::to_terminal_string() { return "TK-STRING-LITERAL"; }
