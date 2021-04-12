@@ -2,10 +2,11 @@
 #include <cassert>
 #include <cstring>
 #include <iostream>
+#include <stdlib.h>
 
-bool parse_file(FILE *inputFile) {
-    std::stack<std::string> st;
-    st.push("0");
+ParseTree *parse_file(FILE *inputFile) {
+    std::stack<std::pair<std::string, ParseTree *>> st;
+    st.push({"0", nullptr});
     Lexer lexer = Lexer(inputFile);
     Token *newToken;
     ParseTable parse_table = ParseTable("src/parser/parse_table");
@@ -44,27 +45,33 @@ bool parse_file(FILE *inputFile) {
             break;
         }
         std::pair<char, int> operation =
-            parse_table.transitions[stoi(st.top())][token_element];
-        std::cout << token_element << std::endl;
+            parse_table.transitions[stoi(st.top().first)][token_element];
+        // std::cout << token_element << std::endl;
         while (operation.first == 'r') {
             int to_pop = 2 * grammar_rules[operation.second].rhs.size();
-
+            std::vector<ParseTree *> children;
             for (int i = 0; i < to_pop; i++) {
                 if (st.empty())
-                    return false;
+                    return nullptr;
+                if (st.top().second)
+                    children.push_back(st.top().second);
                 st.pop();
             }
-            int prev_state = stoi(st.top());
-            st.push(grammar_rules[operation.second].lhs);
-            st.push(std::to_string(
-                parse_table.transitions[prev_state][st.top()].second));
-            operation = parse_table.transitions[stoi(st.top())][token_element];
+            std::reverse(children.begin(), children.end());
+            int prev_state = stoi(st.top().first);
+            st.push({grammar_rules[operation.second].lhs,
+                     new ParseTree(nullptr, grammar_rules[operation.second].lhs,
+                                   children)});
+            st.push({std::to_string(
+                         parse_table.transitions[prev_state][st.top().first]
+                             .second),
+                     nullptr});
+            operation =
+                parse_table.transitions[stoi(st.top().first)][token_element];
         }
         if (operation.first == 's') {
-            st.push(token_element);
-            st.push(std::to_string(operation.second));
-        } else if (operation.first == 'a') {
-            return true;
+            st.push({token_element, new ParseTree(newToken, token_element)});
+            st.push({std::to_string(operation.second), nullptr});
         } else {
             throw "parse error";
         }
@@ -72,28 +79,34 @@ bool parse_file(FILE *inputFile) {
 
     std::string token_element = "$";
     std::pair<char, int> operation =
-        parse_table.transitions[stoi(st.top())][token_element];
+        parse_table.transitions[stoi(st.top().first)][token_element];
 
     while (operation.first == 'r') {
         int to_pop = 2 * grammar_rules[operation.second].rhs.size();
-
+        std::vector<ParseTree *> children;
         for (int i = 0; i < to_pop; i++) {
-            if (st.empty()) {
-                return false;
-            }
+            if (st.empty())
+                return nullptr;
+            if (st.top().second)
+                children.push_back(st.top().second);
             st.pop();
         }
-        int prev_state = stoi(st.top());
-        st.push(grammar_rules[operation.second].lhs);
-        st.push(std::to_string(
-            parse_table.transitions[prev_state][st.top()].second));
-        operation = parse_table.transitions[stoi(st.top())][token_element];
+        std::reverse(children.begin(), children.end());
+        int prev_state = stoi(st.top().first);
+        st.push({grammar_rules[operation.second].lhs,
+                 new ParseTree(nullptr, grammar_rules[operation.second].lhs,
+                               children)});
+        st.push(
+            {std::to_string(
+                 parse_table.transitions[prev_state][st.top().first].second),
+             nullptr});
+        operation =
+            parse_table.transitions[stoi(st.top().first)][token_element];
     }
     if (operation.first == 'a') {
-        return true;
-    } else {
-        return false;
+        st.pop();
+        return st.top().second;
     }
 
-    return false;
+    return nullptr;
 }

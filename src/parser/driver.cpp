@@ -22,7 +22,8 @@ int main(int argc, char *argv[]) {
         return 1;
     }
     try {
-        std::cout << parse_file(inputFile);
+        ParseTree *res = parse_file(inputFile);
+        res->inorder_traversal();
     } catch (...) {
         std::cout << "Parse Error";
     }

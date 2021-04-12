@@ -1,6 +1,8 @@
 #pragma once
 #include "Lexer.hpp"
 #include "ParseTable.hpp"
+#include "ParseTree.hpp"
+#include <algorithm>
 #include <stack>
 
-bool parse_file(FILE *file);
+ParseTree *parse_file(FILE *file);
