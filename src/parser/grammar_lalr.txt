@@ -1,0 +1,138 @@
+augmented-program -> program
+
+program -> functions-and-declarations main-function
+
+main-function -> TK-VOID TK-main TK-RBO TK-RBC body
+
+functions-and-declarations -> functions-and-declarations function
+functions-and-declarations -> functions-and-declarations declaration-statement
+functions-and-declarations -> ''
+function -> data-type TK-FUNC-ID TK-RBO parameter-list TK-RBC body
+
+parameter-list -> non-empty-parameter-list
+parameter-list -> ''
+non-empty-parameter-list -> non-empty-parameter-list TK-COMMA parameter
+non-empty-parameter-list -> parameter
+parameter -> data-type TK-VAR-ID
+
+body  -> TK-CBO statements return-statement TK-CBC
+statements-block -> TK-CBO statements TK-CBC
+
+statements -> statement statements
+statements -> ''
+
+return-statement -> TK-RETURN return-variable TK-SC
+return-variable -> TK-VAR-ID    
+return-variable -> ''
+
+statement -> declaration-statements TK-SC
+statement -> expressions TK-SC
+statement -> selection-statement
+statement -> iteration-statement
+
+declaration-statements -> data-type declerations
+declerations -> declerations TK-COMMA decleration
+declerations -> decleration
+decleration -> TK-VAR-ID decleration-rvalue
+decleration-rvalue -> TK-ASSIGN expression
+decleration-rvalue -> ''
+
+
+selection-statement -> selection-taken-block selection-not-taken-block
+selection-taken-block -> TK-IF TK-RBO expression-statement TK-RBC statements-block
+selection-not-taken-block -> ''
+selection-not-taken-block -> TK-ELSE selection-candidate-block
+selection-not-taken-block -> selection-statment
+selection-candidate-block -> statements-block
+
+iteration-statement -> while TK-RBO expression TK-RBC statements-block
+iteration-statement -> do statements-block while TK-RBO expression TK-RBC TK-SC
+
+expressions -> expressions TK-COMMA expression
+expressions -> expression
+
+expression -> assignment-expression
+assignment-expression -> TK-VAR-ID assignment-operators assignment-expression
+assignment-expression -> expression-1
+
+assignment-operators -> TK-ASSIGN
+assignment-operators -> TK-ADD-ASSIGN
+assignment-operators -> TK-SUB-ASSIGN
+assignment-operators -> TK-DIV-ASSIGN
+assignment-operators -> TK-MUL-ASSIGN
+assignment-operators -> TK-MOD-ASSIGN
+
+expression-1 -> conditional-expression
+conditional-expression -> expression-2 conditional-post-expression
+conditional-post-expression -> TK-QUESTION expression-1 TK-COLON expression-1
+conditional-post-expression -> ''
+
+expression-2 -> expression-3 or-expression
+or-expression -> TK-LOGICAL-OR expression-2
+or-expression -> ''
+
+expression-3 -> expression-4 and-expression
+and-expression -> TK-LOGICAL-AND expression-3
+and-expression -> ''
+
+expression-4 -> expression-5 equality-expression
+equality-expression -> equality-operators expression-4
+equality-expression -> ''
+equality-operators -> TK-EQUAL
+equality-operators -> TK-NOTEQUAL
+
+expression-5 -> expression-6 relational-expression
+relational-expression -> relational-operators expression-5
+relational-expression -> ''
+relational-operators -> TK-GREATER
+relational-operators -> TK-GREATEREQ
+relational-operators -> TK-LESSER
+relational-operators -> TK-LESSEREQ
+
+expression-6 -> expression-7 additive-expression
+additive-expression -> additive-operators expression-6
+additive-expression -> ''
+additive-operators -> TK-ADD
+additive-operators -> TK-SUB
+
+expression-7 -> expression-8 multiplicative-expression
+multiplicative-expression -> multiplicative-operators expression-7
+multiplicative-expression -> ''
+multiplicative-operators -> TK-MUL
+multiplicative-operators -> TK-DIV
+multiplicative-operators -> TK-MOD
+
+expression-8 -> unary-operators expression-9
+expression-8 -> expression-9
+unary-operators -> TK-ADD
+unary-operators -> TK-SUB
+unary-operators -> TK-NOT
+unary-operators -> TK-INCREMENT
+unary-operators -> TK-DECREMENT
+
+expression-9 -> elemental-types postfix-expression
+expression-9 -> TK-RBO expression TK-RBC
+postfix-expression -> postfix-operators
+postfix-expression -> ''
+postfix-operators -> TK-INCREMENT
+postfix-operators -> TK-DECREMENT
+
+elemental-types -> const-type
+elemental-types -> TK-VAR-ID
+elemental-types -> TK-VAR-ID TK-RBO function-call-parameter-list TK-RBC
+const-type -> TK-INT-LITERAL
+const-type -> TK-FLOAT-LITERAL
+const-type -> TK-BOOLEAN-LITERAL
+const-type -> TK-STRING-LITERAL
+
+function-call-parameter-list -> non-empty-function-call-parameter-list
+function-call-parameter-list -> ''
+non-empty-function-call-parameter-list -> non-empty-function-call-parameter-list TK-COMMA function-call-parameter
+non-empty-function-call-parameter-list -> function-call-parameter
+function-call-parameter -> expression
+
+data-type -> TK-INT
+data-type -> TK-FLOAT
+data-type -> TK-BOOLEAN
+data-type -> TK-STRING
+data-type -> TK-VOID
