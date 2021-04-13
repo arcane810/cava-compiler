@@ -10,6 +10,10 @@ Inheritance diagram for Token\+:\begin{figure}[H]
 \begin{DoxyCompactItemize}
 \item 
 \mbox{\hyperlink{class_token_a6826f048d0654c2507c83e44aa3e959e}{Token}} (Token\+Type token\+Type)
+\item 
+std\+::string \mbox{\hyperlink{class_token_a8863381edabce7bc1e92473b445ba81f}{to\+String}} ()
+\item 
+std\+::string \mbox{\hyperlink{class_token_a58287264050d47e02cbc935facad0b92}{to\+Parse\+String}} ()
 \end{DoxyCompactItemize}
 \doxysubsection*{Public Attributes}
 \begin{DoxyCompactItemize}
@@ -30,12 +34,27 @@ Constructor. Initializes the token\+Type to the passed parameter
 
 
 \begin{DoxyParams}{Parameters}
-{\em token\+Type} & The token type\\
+{\em token\+Type} & The token type \\
 \hline
 \end{DoxyParams}
-Group 12 -\/ Cava Akul Singhal -\/ 2018A7\+PS0193H Rohan Daniel -\/ 2018A7\+PS0584H Pranav Rajagopalan -\/ 2018A7\+PS0177H Akshay Tiwari -\/ 2018A7\+PS0201H 
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_token_a58287264050d47e02cbc935facad0b92}\label{class_token_a58287264050d47e02cbc935facad0b92}} 
+\index{Token@{Token}!toParseString@{toParseString}}
+\index{toParseString@{toParseString}!Token@{Token}}
+\doxysubsubsection{\texorpdfstring{toParseString()}{toParseString()}}
+{\footnotesize\ttfamily std\+::string Token\+::to\+Parse\+String (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+A function to get a string which is used in parsing \mbox{\Hypertarget{class_token_a8863381edabce7bc1e92473b445ba81f}\label{class_token_a8863381edabce7bc1e92473b445ba81f}} 
+\index{Token@{Token}!toString@{toString}}
+\index{toString@{toString}!Token@{Token}}
+\doxysubsubsection{\texorpdfstring{toString()}{toString()}}
+{\footnotesize\ttfamily std\+::string Token\+::to\+String (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+A function to get a presentable string form of the token 
 
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
 \item 
-src/\mbox{\hyperlink{_token_8hpp}{Token.\+hpp}}\item 
-src/Token.\+cpp\end{DoxyCompactItemize}
+src/includes/\mbox{\hyperlink{_token_8hpp}{Token.\+hpp}}\item 
+src/lexer/\mbox{\hyperlink{_token_8cpp}{Token.\+cpp}}\end{DoxyCompactItemize}

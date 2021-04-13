@@ -1,10 +1,3 @@
-/**
- * Group 12 - Cava
- * Akul Singhal - 2018A7PS0193H
- * Rohan Daniel - 2018A7PS0584H
- * Pranav Rajagopalan - 2018A7PS0177H
- * Akshay Tiwari - 2018A7PS0201H
- */
 /** @file */
 
 #pragma once
@@ -42,7 +35,13 @@ class Token {
      * @param tokenType The token type
      */
     Token(TokenType tokenType);
-    std::string printToken();
+    /**
+     * A function to get a presentable string form of the token
+     */
+    std::string toString();
+    /**
+     * A function to get a string which is used in parsing
+     */
     std::string toParseString();
 };
 
@@ -79,6 +78,8 @@ const std::string OperatorNames[] = {
     "+",  "-",  "*",  "/",  "%",  "=", "==", "!=", "+=", "-=", "*=", "/=",
     "%=", "++", "--", "&&", "||", "!", ">",  "<",  ">=", "<=", "?",  ":"};
 
+// String array for enum to string (that is used in parsing) mapping of operator
+// types
 const std::string OperatorTerminalNames[] = {
     "TK-ADD",        "TK-SUB",        "TK-MUL",        "TK-DIV",
     "TK-MOD",        "TK-ASSIGN",     "TK-EQUAL",      "TK-NOTEQUAL",
@@ -126,6 +127,8 @@ const std::string KeywordNames[] = {
     "int",  "bool",  "string", "float",    "for",    "while", "if",   "else",
     "true", "false", "break",  "continue", "return", "void",  "main", "do"};
 
+// String array for enum to string (that is used in parsing) mapping of keyword
+// types
 const std::string KeywordTerminalNames[] = {
     "TK-INT",    "TK-BOOL", "TK-STRING", "TK-FLOAT", "TK-FOR",   "TK-WHILE",
     "TK-IF",     "TK-ELSE", "TK-TRUE",   "TK-FALSE", "TK-BREAK", "TK-CONTINUE",
@@ -158,6 +161,9 @@ enum DelimiterType {
 
 // String array for enum to string mapping of delimiter types
 const std::string DelimiterNames[] = {";", ",", "(", ")", "{", "}", "[", "]"};
+
+// String array for enum to string (that is used in parsing) mapping of
+// delimiter types
 const std::string DelimiterTerminalNames[] = {"TK-SC",  "TK-COMMA", "TK-RBO",
                                               "TK-RBC", "TK-CBO",   "TK-CBC",
                                               "TK-SBO", "TK-SBC"};

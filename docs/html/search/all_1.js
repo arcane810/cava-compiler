@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['errortoken_1',['ErrorToken',['../class_error_token.html',1,'ErrorToken'],['../class_error_token.html#aa3f8eb869f074a4874dcf1a78ce7bbfc',1,'ErrorToken::ErrorToken()']]]
+  ['cava_20compiler_1',['Cava Compiler',['../index.html',1,'']]],
+  ['children_2',['children',['../class_parse_tree.html#a6161720a0ca55516d6a1123625b0f3d1',1,'ParseTree']]]
 ];

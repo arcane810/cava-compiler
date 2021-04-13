@@ -1,3 +1,5 @@
+/** @file */
+
 #include "GrammarRule.hpp"
 #include <iostream>
 

@@ -1,3 +1,5 @@
+/** @file */
+
 #include "Parser.hpp"
 #include <cassert>
 #include <cstring>

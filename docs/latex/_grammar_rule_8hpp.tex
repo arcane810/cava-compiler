@@ -1,0 +1,32 @@
+\hypertarget{_grammar_rule_8hpp}{}\doxysection{src/includes/\+Grammar\+Rule.hpp File Reference}
+\label{_grammar_rule_8hpp}\index{src/includes/GrammarRule.hpp@{src/includes/GrammarRule.hpp}}
+{\ttfamily \#include \char`\"{}Token.\+hpp\char`\"{}}\newline
+{\ttfamily \#include $<$fstream$>$}\newline
+{\ttfamily \#include $<$ostream$>$}\newline
+{\ttfamily \#include $<$sstream$>$}\newline
+{\ttfamily \#include $<$string$>$}\newline
+{\ttfamily \#include $<$vector$>$}\newline
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{class_grammar_rule}{Grammar\+Rule}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+std\+::vector$<$ \mbox{\hyperlink{class_grammar_rule}{Grammar\+Rule}} $>$ \mbox{\hyperlink{_grammar_rule_8hpp_aa5bead8be15fb4c1510c503f3ccb3705}{grammar\+Rules}} (std\+::string grammar\+\_\+file)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{_grammar_rule_8hpp_aa5bead8be15fb4c1510c503f3ccb3705}\label{_grammar_rule_8hpp_aa5bead8be15fb4c1510c503f3ccb3705}} 
+\index{GrammarRule.hpp@{GrammarRule.hpp}!grammarRules@{grammarRules}}
+\index{grammarRules@{grammarRules}!GrammarRule.hpp@{GrammarRule.hpp}}
+\doxysubsubsection{\texorpdfstring{grammarRules()}{grammarRules()}}
+{\footnotesize\ttfamily std\+::vector$<$\mbox{\hyperlink{class_grammar_rule}{Grammar\+Rule}}$>$ grammar\+Rules (\begin{DoxyParamCaption}\item[{std\+::string}]{grammar\+\_\+file }\end{DoxyParamCaption})}
+
+A function which takes in the path of a file to the grammar rules and parses each line as a grammar rule and stores it into a vector 
+\begin{DoxyParams}{Parameters}
+{\em grammar\+\_\+file} & the path to the grammar file \\
+\hline
+\end{DoxyParams}

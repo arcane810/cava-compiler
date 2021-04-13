@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.9.1"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Cava Language Compiler: src/Token.hpp File Reference</title>
+<title>Cava Language Compiler: src/includes/Token.hpp File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -61,7 +61,7 @@ $(function() {
 
 <div id="nav-path" class="navpath">
   <ul>
-<li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li>  </ul>
+<li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_bf59d41d727aac54882b42f236ae575e.html">includes</a></li>  </ul>
 </div>
 </div><!-- top -->
 <div class="header">
@@ -165,6 +165,8 @@ Enumerations</h2></td></tr>
 , <br />
 &#160;&#160;<b>RETURN</b>
 , <b>VOID</b>
+, <b>MAIN</b>
+, <b>DO</b>
 <br />
  }</td></tr>
 <tr class="separator:afbdba0a93bce89b7eec47b7fa5049306"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -197,15 +199,19 @@ Variables</h2></td></tr>
 <tr class="separator:aeb632868f895d9f973c454e1f4409aae"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a109a2cfdc2dc5ecca08aa98a073da5ae"><td class="memItemLeft" align="right" valign="top">const std::string&#160;</td><td class="memItemRight" valign="bottom"><b>OperatorNames</b> []</td></tr>
 <tr class="separator:a109a2cfdc2dc5ecca08aa98a073da5ae"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8d3291b1276ece3cc9bcb5fade4057ff"><td class="memItemLeft" align="right" valign="top">const std::string&#160;</td><td class="memItemRight" valign="bottom"><b>OperatorTerminalNames</b> []</td></tr>
+<tr class="separator:a8d3291b1276ece3cc9bcb5fade4057ff"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a96a853ecb13f182625b1fe098a4d4b67"><td class="memItemLeft" align="right" valign="top">const std::string&#160;</td><td class="memItemRight" valign="bottom"><b>KeywordNames</b> []</td></tr>
 <tr class="separator:a96a853ecb13f182625b1fe098a4d4b67"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad7445fe63929e033c6b2bc5cd1441069"><td class="memItemLeft" align="right" valign="top">const std::string&#160;</td><td class="memItemRight" valign="bottom"><b>KeywordTerminalNames</b> []</td></tr>
+<tr class="separator:ad7445fe63929e033c6b2bc5cd1441069"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:acf4462ef90ee98b1ad35f7b36d133cd4"><td class="memItemLeft" align="right" valign="top"><a id="acf4462ef90ee98b1ad35f7b36d133cd4"></a>
 const std::string&#160;</td><td class="memItemRight" valign="bottom"><b>DelimiterNames</b> [] = {&quot;;&quot;, &quot;,&quot;, &quot;(&quot;, &quot;)&quot;, &quot;{&quot;, &quot;}&quot;, &quot;[&quot;, &quot;]&quot;}</td></tr>
 <tr class="separator:acf4462ef90ee98b1ad35f7b36d133cd4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a300aa738092ae018b3cc5fdd22ca1c21"><td class="memItemLeft" align="right" valign="top">const std::string&#160;</td><td class="memItemRight" valign="bottom"><b>DelimiterTerminalNames</b> []</td></tr>
+<tr class="separator:a300aa738092ae018b3cc5fdd22ca1c21"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Group 12 - Cava Akul Singhal - 2018A7PS0193H Rohan Daniel - 2018A7PS0584H Pranav Rajagopalan - 2018A7PS0177H Akshay Tiwari - 2018A7PS0201H </p>
-</div><h2 class="groupheader">Function Documentation</h2>
+<h2 class="groupheader">Function Documentation</h2>
 <a id="a5d3e9f9b7869f02683c155f5cdd8e3d8"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a5d3e9f9b7869f02683c155f5cdd8e3d8">&#9670;&nbsp;</a></span>resolveFloat()</h2>
 
@@ -282,6 +288,23 @@ const std::string&#160;</td><td class="memItemRight" valign="bottom"><b>Delimite
 </div>
 </div>
 <h2 class="groupheader">Variable Documentation</h2>
+<a id="a300aa738092ae018b3cc5fdd22ca1c21"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a300aa738092ae018b3cc5fdd22ca1c21">&#9670;&nbsp;</a></span>DelimiterTerminalNames</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const std::string DelimiterTerminalNames[]</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>Initial value:</b><div class="fragment"><div class="line">= {<span class="stringliteral">&quot;TK-SC&quot;</span>,  <span class="stringliteral">&quot;TK-COMMA&quot;</span>, <span class="stringliteral">&quot;TK-RBO&quot;</span>,</div>
+<div class="line">                                              <span class="stringliteral">&quot;TK-RBC&quot;</span>, <span class="stringliteral">&quot;TK-CBO&quot;</span>,   <span class="stringliteral">&quot;TK-CBC&quot;</span>,</div>
+<div class="line">                                              <span class="stringliteral">&quot;TK-SBO&quot;</span>, <span class="stringliteral">&quot;TK-SBC&quot;</span>}</div>
+</div><!-- fragment -->
+</div>
+</div>
 <a id="a96a853ecb13f182625b1fe098a4d4b67"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a96a853ecb13f182625b1fe098a4d4b67">&#9670;&nbsp;</a></span>KeywordNames</h2>
 
@@ -294,8 +317,26 @@ const std::string&#160;</td><td class="memItemRight" valign="bottom"><b>Delimite
       </table>
 </div><div class="memdoc">
 <b>Initial value:</b><div class="fragment"><div class="line">= {</div>
-<div class="line">    <span class="stringliteral">&quot;int&quot;</span>,  <span class="stringliteral">&quot;bool&quot;</span>, <span class="stringliteral">&quot;string&quot;</span>, <span class="stringliteral">&quot;float&quot;</span>, <span class="stringliteral">&quot;for&quot;</span>,      <span class="stringliteral">&quot;while&quot;</span>,  <span class="stringliteral">&quot;if&quot;</span>,</div>
-<div class="line">    <span class="stringliteral">&quot;else&quot;</span>, <span class="stringliteral">&quot;true&quot;</span>, <span class="stringliteral">&quot;false&quot;</span>,  <span class="stringliteral">&quot;break&quot;</span>, <span class="stringliteral">&quot;continue&quot;</span>, <span class="stringliteral">&quot;return&quot;</span>, <span class="stringliteral">&quot;void&quot;</span>}</div>
+<div class="line">    <span class="stringliteral">&quot;int&quot;</span>,  <span class="stringliteral">&quot;bool&quot;</span>,  <span class="stringliteral">&quot;string&quot;</span>, <span class="stringliteral">&quot;float&quot;</span>,    <span class="stringliteral">&quot;for&quot;</span>,    <span class="stringliteral">&quot;while&quot;</span>, <span class="stringliteral">&quot;if&quot;</span>,   <span class="stringliteral">&quot;else&quot;</span>,</div>
+<div class="line">    <span class="stringliteral">&quot;true&quot;</span>, <span class="stringliteral">&quot;false&quot;</span>, <span class="stringliteral">&quot;break&quot;</span>,  <span class="stringliteral">&quot;continue&quot;</span>, <span class="stringliteral">&quot;return&quot;</span>, <span class="stringliteral">&quot;void&quot;</span>,  <span class="stringliteral">&quot;main&quot;</span>, <span class="stringliteral">&quot;do&quot;</span>}</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="ad7445fe63929e033c6b2bc5cd1441069"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad7445fe63929e033c6b2bc5cd1441069">&#9670;&nbsp;</a></span>KeywordTerminalNames</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const std::string KeywordTerminalNames[]</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>Initial value:</b><div class="fragment"><div class="line">= {</div>
+<div class="line">    <span class="stringliteral">&quot;TK-INT&quot;</span>,    <span class="stringliteral">&quot;TK-BOOL&quot;</span>, <span class="stringliteral">&quot;TK-STRING&quot;</span>, <span class="stringliteral">&quot;TK-FLOAT&quot;</span>, <span class="stringliteral">&quot;TK-FOR&quot;</span>,   <span class="stringliteral">&quot;TK-WHILE&quot;</span>,</div>
+<div class="line">    <span class="stringliteral">&quot;TK-IF&quot;</span>,     <span class="stringliteral">&quot;TK-ELSE&quot;</span>, <span class="stringliteral">&quot;TK-TRUE&quot;</span>,   <span class="stringliteral">&quot;TK-FALSE&quot;</span>, <span class="stringliteral">&quot;TK-BREAK&quot;</span>, <span class="stringliteral">&quot;TK-CONTINUE&quot;</span>,</div>
+<div class="line">    <span class="stringliteral">&quot;TK-RETURN&quot;</span>, <span class="stringliteral">&quot;TK-VOID&quot;</span>, <span class="stringliteral">&quot;TK-MAIN&quot;</span>,   <span class="stringliteral">&quot;TK-DO&quot;</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -313,6 +354,27 @@ const std::string&#160;</td><td class="memItemRight" valign="bottom"><b>Delimite
 <b>Initial value:</b><div class="fragment"><div class="line">= {</div>
 <div class="line">    <span class="stringliteral">&quot;+&quot;</span>,  <span class="stringliteral">&quot;-&quot;</span>,  <span class="stringliteral">&quot;*&quot;</span>,  <span class="stringliteral">&quot;/&quot;</span>,  <span class="stringliteral">&quot;%&quot;</span>,  <span class="stringliteral">&quot;=&quot;</span>, <span class="stringliteral">&quot;==&quot;</span>, <span class="stringliteral">&quot;!=&quot;</span>, <span class="stringliteral">&quot;+=&quot;</span>, <span class="stringliteral">&quot;-=&quot;</span>, <span class="stringliteral">&quot;*=&quot;</span>, <span class="stringliteral">&quot;/=&quot;</span>,</div>
 <div class="line">    <span class="stringliteral">&quot;%=&quot;</span>, <span class="stringliteral">&quot;++&quot;</span>, <span class="stringliteral">&quot;--&quot;</span>, <span class="stringliteral">&quot;&amp;&amp;&quot;</span>, <span class="stringliteral">&quot;||&quot;</span>, <span class="stringliteral">&quot;!&quot;</span>, <span class="stringliteral">&quot;&gt;&quot;</span>,  <span class="stringliteral">&quot;&lt;&quot;</span>,  <span class="stringliteral">&quot;&gt;=&quot;</span>, <span class="stringliteral">&quot;&lt;=&quot;</span>, <span class="stringliteral">&quot;?&quot;</span>,  <span class="stringliteral">&quot;:&quot;</span>}</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="a8d3291b1276ece3cc9bcb5fade4057ff"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8d3291b1276ece3cc9bcb5fade4057ff">&#9670;&nbsp;</a></span>OperatorTerminalNames</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const std::string OperatorTerminalNames[]</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>Initial value:</b><div class="fragment"><div class="line">= {</div>
+<div class="line">    <span class="stringliteral">&quot;TK-ADD&quot;</span>,        <span class="stringliteral">&quot;TK-SUB&quot;</span>,        <span class="stringliteral">&quot;TK-MUL&quot;</span>,        <span class="stringliteral">&quot;TK-DIV&quot;</span>,</div>
+<div class="line">    <span class="stringliteral">&quot;TK-MOD&quot;</span>,        <span class="stringliteral">&quot;TK-ASSIGN&quot;</span>,     <span class="stringliteral">&quot;TK-EQUAL&quot;</span>,      <span class="stringliteral">&quot;TK-NOTEQUAL&quot;</span>,</div>
+<div class="line">    <span class="stringliteral">&quot;TK-ADD-ASSIGN&quot;</span>, <span class="stringliteral">&quot;TK-SUB-ASSIGN&quot;</span>, <span class="stringliteral">&quot;TK-MUL-ASSIGN&quot;</span>, <span class="stringliteral">&quot;TK-DIV-ASSIGN&quot;</span>,</div>
+<div class="line">    <span class="stringliteral">&quot;TK-MOD-ASSIGN&quot;</span>, <span class="stringliteral">&quot;TK-INCREMENT&quot;</span>,  <span class="stringliteral">&quot;TK-DECREMENT&quot;</span>,  <span class="stringliteral">&quot;TK-LOGICAL-AND&quot;</span>,</div>
+<div class="line">    <span class="stringliteral">&quot;TK-LOGICAL-OR&quot;</span>, <span class="stringliteral">&quot;TK-NOT&quot;</span>,        <span class="stringliteral">&quot;TK-GREATER&quot;</span>,    <span class="stringliteral">&quot;TK-LESSER&quot;</span>,</div>
+<div class="line">    <span class="stringliteral">&quot;TK-GREATEREQ&quot;</span>,  <span class="stringliteral">&quot;TK-LESSEREQ&quot;</span>,   <span class="stringliteral">&quot;TK-QUESTION&quot;</span>,   <span class="stringliteral">&quot;TK-COLON&quot;</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>

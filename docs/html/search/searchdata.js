@@ -1,10 +1,11 @@
 var indexSectionsWithContent =
 {
-  0: "defgiklnorst",
-  1: "defiklost",
-  2: "lt",
-  3: "defgiklnorst",
-  4: "s"
+  0: "acdefgiklnoprst",
+  1: "defgiklopst",
+  2: "dglpt",
+  3: "adefgiklnoprst",
+  4: "clrt",
+  5: "c"
 };
 
 var indexSectionNames =
@@ -13,7 +14,8 @@ var indexSectionNames =
   1: "classes",
   2: "files",
   3: "functions",
-  4: "enums"
+  4: "variables",
+  5: "pages"
 };
 
 var indexSectionLabels =
@@ -22,6 +24,7 @@ var indexSectionLabels =
   1: "Classes",
   2: "Files",
   3: "Functions",
-  4: "Enumerations"
+  4: "Variables",
+  5: "Pages"
 };
 

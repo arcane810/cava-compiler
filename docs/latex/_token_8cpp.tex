@@ -1,0 +1,61 @@
+\hypertarget{_token_8cpp}{}\doxysection{src/lexer/\+Token.cpp File Reference}
+\label{_token_8cpp}\index{src/lexer/Token.cpp@{src/lexer/Token.cpp}}
+{\ttfamily \#include \char`\"{}Token.\+hpp\char`\"{}}\newline
+{\ttfamily \#include $<$iomanip$>$}\newline
+{\ttfamily \#include $<$iostream$>$}\newline
+{\ttfamily \#include $<$sstream$>$}\newline
+{\ttfamily \#include $<$string$>$}\newline
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_token}{Token}} $\ast$ \mbox{\hyperlink{_token_8cpp_ab8167a432f909bee7b216a4a26a952aa}{resolve\+Identifier}} (std\+::string id)
+\item 
+\mbox{\hyperlink{class_token}{Token}} $\ast$ \mbox{\hyperlink{_token_8cpp_a8bd7b4b09087619142c3212e8bfbd3ee}{resolve\+Integer}} (std\+::string integer\+\_\+string)
+\item 
+\mbox{\hyperlink{class_token}{Token}} $\ast$ \mbox{\hyperlink{_token_8cpp_a5d3e9f9b7869f02683c155f5cdd8e3d8}{resolve\+Float}} (std\+::string float\+\_\+string)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{_token_8cpp_a5d3e9f9b7869f02683c155f5cdd8e3d8}\label{_token_8cpp_a5d3e9f9b7869f02683c155f5cdd8e3d8}} 
+\index{Token.cpp@{Token.cpp}!resolveFloat@{resolveFloat}}
+\index{resolveFloat@{resolveFloat}!Token.cpp@{Token.cpp}}
+\doxysubsubsection{\texorpdfstring{resolveFloat()}{resolveFloat()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_token}{Token}}$\ast$ resolve\+Float (\begin{DoxyParamCaption}\item[{std\+::string}]{float\+\_\+string }\end{DoxyParamCaption})}
+
+A function that returns an float token with its value parsed from the string 
+\begin{DoxyParams}{Parameters}
+{\em float\+\_\+string} & the float formatted as a string \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+a pointer to the float token 
+\end{DoxyReturn}
+\mbox{\Hypertarget{_token_8cpp_ab8167a432f909bee7b216a4a26a952aa}\label{_token_8cpp_ab8167a432f909bee7b216a4a26a952aa}} 
+\index{Token.cpp@{Token.cpp}!resolveIdentifier@{resolveIdentifier}}
+\index{resolveIdentifier@{resolveIdentifier}!Token.cpp@{Token.cpp}}
+\doxysubsubsection{\texorpdfstring{resolveIdentifier()}{resolveIdentifier()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_token}{Token}}$\ast$ resolve\+Identifier (\begin{DoxyParamCaption}\item[{std\+::string}]{id }\end{DoxyParamCaption})}
+
+A function that returns an identifier or a keyword if the name matches a keyword 
+\begin{DoxyParams}{Parameters}
+{\em id} & the name of identifier/keyword \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+a pointer to the identifier/keyword 
+\end{DoxyReturn}
+\mbox{\Hypertarget{_token_8cpp_a8bd7b4b09087619142c3212e8bfbd3ee}\label{_token_8cpp_a8bd7b4b09087619142c3212e8bfbd3ee}} 
+\index{Token.cpp@{Token.cpp}!resolveInteger@{resolveInteger}}
+\index{resolveInteger@{resolveInteger}!Token.cpp@{Token.cpp}}
+\doxysubsubsection{\texorpdfstring{resolveInteger()}{resolveInteger()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_token}{Token}}$\ast$ resolve\+Integer (\begin{DoxyParamCaption}\item[{std\+::string}]{integer\+\_\+string }\end{DoxyParamCaption})}
+
+A function that returns an integer token with its value parsed from the string 
+\begin{DoxyParams}{Parameters}
+{\em integer\+\_\+string} & the integer formatted as a string \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+a pointer to the integer token 
+\end{DoxyReturn}

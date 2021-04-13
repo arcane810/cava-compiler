@@ -1,3 +1,5 @@
+/** @file */
+
 #include "ParseTable.hpp"
 
 ParseTable::ParseTable(std::string filename) {

@@ -1,3 +1,5 @@
+/** @file */
+
 #include "ParseTree.hpp"
 
 ParseTree::ParseTree(Token *token, std::string token_string)
@@ -10,28 +12,30 @@ void ParseTree::addChild(ParseTree *child) { children.push_back(child); }
 
 void ParseTree::inorder_traversal() {
     std::cout << token_string;
-    if(token) {
-        std::cout <<" "<< token->printToken();
+    if (token) {
+        std::cout << " " << token->toString();
     }
-    std::cout<<std::endl;
+    std::cout << std::endl;
     for (auto it : children) {
         it->inorder_traversal();
     }
 }
-void ParseTree::inorder_traversal_g(std::vector<std::pair<int,int> > &edges, int &node_num, std::vector<std::string> &labels) {
-    //std::cout << token_string << std::endl;
+void ParseTree::inorder_traversal_g(std::vector<std::pair<int, int>> &edges,
+                                    int &node_num,
+                                    std::vector<std::string> &labels) {
+    // std::cout << token_string << std::endl;
     std::string label = token_string;
-    if(token) {
+    if (token) {
         label += " ";
-        label += token->printToken();
+        label += token->toString();
     }
     int cnn = node_num;
     labels.push_back(token_string);
     for (auto it : children) {
         node_num++;
         edges.push_back(std::make_pair(cnn, node_num));
-        //std::cout<<token_string<<" "<<it->token_string<<"\n";
-        //edges.push_back(std::make_pair(token_string,it->token_string));
+        // std::cout<<token_string<<" "<<it->token_string<<"\n";
+        // edges.push_back(std::make_pair(token_string,it->token_string));
         it->inorder_traversal_g(edges, node_num, labels);
     }
 }

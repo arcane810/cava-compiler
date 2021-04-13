@@ -1,0 +1,116 @@
+\hypertarget{class_parse_tree}{}\doxysection{Parse\+Tree Class Reference}
+\label{class_parse_tree}\index{ParseTree@{ParseTree}}
+
+
+{\ttfamily \#include $<$Parse\+Tree.\+hpp$>$}
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_parse_tree_a29fec23280935d01c3a03551cb3a4f96}{Parse\+Tree}} (\mbox{\hyperlink{class_token}{Token}} $\ast$token, std\+::string \mbox{\hyperlink{class_parse_tree_a8f7c4d059a2a11bbe156bf030495ad36}{token\+\_\+string}})
+\item 
+\mbox{\hyperlink{class_parse_tree_a86188e520b58aa8985df5fded1ded0cc}{Parse\+Tree}} (\mbox{\hyperlink{class_token}{Token}} $\ast$token, std\+::string \mbox{\hyperlink{class_parse_tree_a8f7c4d059a2a11bbe156bf030495ad36}{token\+\_\+string}}, std\+::vector$<$ \mbox{\hyperlink{class_parse_tree}{Parse\+Tree}} $\ast$ $>$ \mbox{\hyperlink{class_parse_tree_a6161720a0ca55516d6a1123625b0f3d1}{children}})
+\item 
+void \mbox{\hyperlink{class_parse_tree_a2561b61aabec182eedd371573a1822d4}{add\+Child}} (\mbox{\hyperlink{class_parse_tree}{Parse\+Tree}} $\ast$child)
+\item 
+void \mbox{\hyperlink{class_parse_tree_a688fcb9cc93d9c5c257f22e62860d881}{inorder\+\_\+traversal}} ()
+\item 
+void \mbox{\hyperlink{class_parse_tree_a126bde557e99cf873e69d841de7c6f2b}{inorder\+\_\+traversal\+\_\+g}} (std\+::vector$<$ std\+::pair$<$ int, int $>$$>$ \&edges, int \&node\+\_\+num, std\+::vector$<$ std\+::string $>$ \&labels)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+std\+::vector$<$ \mbox{\hyperlink{class_parse_tree}{Parse\+Tree}} $\ast$ $>$ \mbox{\hyperlink{class_parse_tree_a6161720a0ca55516d6a1123625b0f3d1}{children}}
+\item 
+std\+::string \mbox{\hyperlink{class_parse_tree_a8f7c4d059a2a11bbe156bf030495ad36}{token\+\_\+string}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+A class to store the parse tree as nodes 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_parse_tree_a29fec23280935d01c3a03551cb3a4f96}\label{class_parse_tree_a29fec23280935d01c3a03551cb3a4f96}} 
+\index{ParseTree@{ParseTree}!ParseTree@{ParseTree}}
+\index{ParseTree@{ParseTree}!ParseTree@{ParseTree}}
+\doxysubsubsection{\texorpdfstring{ParseTree()}{ParseTree()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily Parse\+Tree\+::\+Parse\+Tree (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_token}{Token}} $\ast$}]{token,  }\item[{std\+::string}]{token\+\_\+string }\end{DoxyParamCaption})}
+
+Constructor which makes a parse tree node without any children 
+\begin{DoxyParams}{Parameters}
+{\em token} & contains the token for token nodes, nullptr otherwise \\
+\hline
+{\em token\+\_\+string} & string representation of the token (which was used in parsing) \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_parse_tree_a86188e520b58aa8985df5fded1ded0cc}\label{class_parse_tree_a86188e520b58aa8985df5fded1ded0cc}} 
+\index{ParseTree@{ParseTree}!ParseTree@{ParseTree}}
+\index{ParseTree@{ParseTree}!ParseTree@{ParseTree}}
+\doxysubsubsection{\texorpdfstring{ParseTree()}{ParseTree()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily Parse\+Tree\+::\+Parse\+Tree (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_token}{Token}} $\ast$}]{token,  }\item[{std\+::string}]{token\+\_\+string,  }\item[{std\+::vector$<$ \mbox{\hyperlink{class_parse_tree}{Parse\+Tree}} $\ast$ $>$}]{children }\end{DoxyParamCaption})}
+
+Constructor which makes a parse tree node with children 
+\begin{DoxyParams}{Parameters}
+{\em token} & contains the token for token nodes, nullptr otherwise \\
+\hline
+{\em token\+\_\+string} & string representation of the token (which was used in parsing) \\
+\hline
+{\em children} & vector of pointers to children \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_parse_tree_a2561b61aabec182eedd371573a1822d4}\label{class_parse_tree_a2561b61aabec182eedd371573a1822d4}} 
+\index{ParseTree@{ParseTree}!addChild@{addChild}}
+\index{addChild@{addChild}!ParseTree@{ParseTree}}
+\doxysubsubsection{\texorpdfstring{addChild()}{addChild()}}
+{\footnotesize\ttfamily void Parse\+Tree\+::add\+Child (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_parse_tree}{Parse\+Tree}} $\ast$}]{child }\end{DoxyParamCaption})}
+
+A method to add a child to the node 
+\begin{DoxyParams}{Parameters}
+{\em child} & pointer to the child that is to be added \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_parse_tree_a688fcb9cc93d9c5c257f22e62860d881}\label{class_parse_tree_a688fcb9cc93d9c5c257f22e62860d881}} 
+\index{ParseTree@{ParseTree}!inorder\_traversal@{inorder\_traversal}}
+\index{inorder\_traversal@{inorder\_traversal}!ParseTree@{ParseTree}}
+\doxysubsubsection{\texorpdfstring{inorder\_traversal()}{inorder\_traversal()}}
+{\footnotesize\ttfamily void Parse\+Tree\+::inorder\+\_\+traversal (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+A function used to print the inorder traversal of the tree \mbox{\Hypertarget{class_parse_tree_a126bde557e99cf873e69d841de7c6f2b}\label{class_parse_tree_a126bde557e99cf873e69d841de7c6f2b}} 
+\index{ParseTree@{ParseTree}!inorder\_traversal\_g@{inorder\_traversal\_g}}
+\index{inorder\_traversal\_g@{inorder\_traversal\_g}!ParseTree@{ParseTree}}
+\doxysubsubsection{\texorpdfstring{inorder\_traversal\_g()}{inorder\_traversal\_g()}}
+{\footnotesize\ttfamily void Parse\+Tree\+::inorder\+\_\+traversal\+\_\+g (\begin{DoxyParamCaption}\item[{std\+::vector$<$ std\+::pair$<$ int, int $>$$>$ \&}]{edges,  }\item[{int \&}]{node\+\_\+num,  }\item[{std\+::vector$<$ std\+::string $>$ \&}]{labels }\end{DoxyParamCaption})}
+
+A function used to create a graph in form of edges and labels which can be used with libraries such as graph viz 
+\begin{DoxyParams}{Parameters}
+{\em edges} & a vector of edges passed by reference to which edges will be added \\
+\hline
+{\em node\+\_\+num} & a node number for the nodes (should be 0 when called externally) \\
+\hline
+{\em labels} & a vector which stores the string labels of the nodes \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{class_parse_tree_a6161720a0ca55516d6a1123625b0f3d1}\label{class_parse_tree_a6161720a0ca55516d6a1123625b0f3d1}} 
+\index{ParseTree@{ParseTree}!children@{children}}
+\index{children@{children}!ParseTree@{ParseTree}}
+\doxysubsubsection{\texorpdfstring{children}{children}}
+{\footnotesize\ttfamily std\+::vector$<$\mbox{\hyperlink{class_parse_tree}{Parse\+Tree}} $\ast$$>$ Parse\+Tree\+::children}
+
+A vector containing the pointers to the children of the parse tree \mbox{\Hypertarget{class_parse_tree_a8f7c4d059a2a11bbe156bf030495ad36}\label{class_parse_tree_a8f7c4d059a2a11bbe156bf030495ad36}} 
+\index{ParseTree@{ParseTree}!token\_string@{token\_string}}
+\index{token\_string@{token\_string}!ParseTree@{ParseTree}}
+\doxysubsubsection{\texorpdfstring{token\_string}{token\_string}}
+{\footnotesize\ttfamily std\+::string Parse\+Tree\+::token\+\_\+string}
+
+string representation of the token (which was used in parsing) 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+src/includes/\mbox{\hyperlink{_parse_tree_8hpp}{Parse\+Tree.\+hpp}}\item 
+src/parser/\mbox{\hyperlink{_parse_tree_8cpp}{Parse\+Tree.\+cpp}}\end{DoxyCompactItemize}

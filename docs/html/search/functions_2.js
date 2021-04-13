@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['floatingpointliteral_32',['FloatingPointLiteral',['../class_floating_point_literal.html#a66725d7d3b212e303963b3ee38f511a3',1,'FloatingPointLiteral']]]
+  ['errortoken_72',['ErrorToken',['../class_error_token.html#aa3f8eb869f074a4874dcf1a78ce7bbfc',1,'ErrorToken']]]
 ];

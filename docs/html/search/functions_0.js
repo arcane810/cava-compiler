@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['delimiter_30',['Delimiter',['../class_delimiter.html#a1f7d1843d9cf06457403e1dd70ac7623',1,'Delimiter']]]
+  ['addchild_70',['addChild',['../class_parse_tree.html#a2561b61aabec182eedd371573a1822d4',1,'ParseTree']]]
 ];
