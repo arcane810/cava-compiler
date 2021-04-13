@@ -1,6 +1,6 @@
 void main() {
-    x = 5;;
-    a = 5
-    x = 6;
+    x=5;
+    int arr[5];
+    arr[5] = 10;
     return 0;
 }

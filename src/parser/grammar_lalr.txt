@@ -28,6 +28,7 @@ declaration-statements -> data-type declerations
 declerations -> declerations TK-COMMA decleration
 declerations -> decleration
 decleration -> TK-VAR-ID decleration-rvalue
+decleration -> array-element decleration-rvalue
 decleration-rvalue -> TK-ASSIGN expression
 decleration-rvalue -> ''
 
@@ -48,6 +49,7 @@ expressions -> expressions TK-COMMA expression
 expressions -> expression
 expression -> assignment-expression
 assignment-expression -> TK-VAR-ID assignment-operators assignment-expression
+assignment-expression -> array-element assignment-operators assignment-expression
 assignment-expression -> expression-1
 assignment-operators -> TK-ASSIGN
 assignment-operators -> TK-ADD-ASSIGN
@@ -109,12 +111,14 @@ postfix-operators -> TK-INCREMENT
 postfix-operators -> TK-DECREMENT
 elemental-types -> const-type
 elemental-types -> TK-VAR-ID
+elemental-types -> array-element
 elemental-types -> TK-VAR-ID TK-RBO function-call-parameter-list TK-RBC
 const-type -> TK-INT-LITERAL
 const-type -> TK-FLOAT-LITERAL
 const-type -> TK-TRUE
 const-type -> TK-FALSE
 const-type -> TK-STRING-LITERAL
+array-element -> TK-VAR-ID TK-SBO expression TK-SBC
 function-call-parameter-list -> non-empty-function-call-parameter-list
 function-call-parameter-list -> ''
 non-empty-function-call-parameter-list -> non-empty-function-call-parameter-list TK-COMMA function-call-parameter

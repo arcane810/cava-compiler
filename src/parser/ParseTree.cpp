@@ -26,11 +26,11 @@ void ParseTree::inorder_traversal_g(std::vector<std::pair<int, int>> &edges,
     // std::cout << token_string << std::endl;
     std::string label = token_string;
     if (token) {
-        label += " ";
+        label += "\n";
         label += token->toString();
     }
     int cnn = node_num;
-    labels.push_back(token_string);
+    labels.push_back(label);
     for (auto it : children) {
         node_num++;
         edges.push_back(std::make_pair(cnn, node_num));

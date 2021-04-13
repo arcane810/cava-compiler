@@ -87,7 +87,7 @@ ParseTree *parse_file(FILE *inputFile) {
         st.pop();
         return st.top().second;
     } else {
-        std::cerr << "Unsuccessful Parsing" << std::endl;
+        std::cerr << "Unexpected <EOF>" << std::endl;
         st.pop();
         return st.top().second;
     }
