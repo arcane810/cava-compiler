@@ -42,6 +42,8 @@ class Token {
      * @param tokenType The token type
      */
     Token(TokenType tokenType);
+    std::string printToken();
+    std::string toParseString();
 };
 
 // enum for Operator Types
@@ -97,7 +99,6 @@ class Operator : public Token {
      * @param operatorType The operator type
      */
     Operator(OperatorType operatorType);
-    std::string to_terminal_string();
 };
 
 // enum for Keyword Types
@@ -141,7 +142,6 @@ class Keyword : public Token {
      * @param keywordType The keyword type
      */
     Keyword(KeywordType keywordType);
-    std::string to_terminal_string();
 };
 
 // enum for Delimiter Types
@@ -176,7 +176,6 @@ class Delimiter : public Token {
      * @param delimiterType The delimiter type
      */
     Delimiter(DelimiterType delimiterType);
-    std::string to_terminal_string();
 };
 
 /**
@@ -192,7 +191,6 @@ class Identifier : public Token {
      * @param identifier_name The identifier name
      */
     Identifier(std::string identifier_name);
-    std::string to_terminal_string();
 };
 
 /**
@@ -208,7 +206,6 @@ class FloatingPointLiteral : public Token {
      * @param value The value
      */
     FloatingPointLiteral(long double value);
-    std::string to_terminal_string();
 };
 
 /**
@@ -224,7 +221,6 @@ class IntegerLiteral : public Token {
      * @param value The value
      */
     IntegerLiteral(int64_t value);
-    std::string to_terminal_string();
 };
 
 /**
@@ -240,7 +236,6 @@ class StringLiteral : public Token {
      * @param value The string
      */
     StringLiteral(std::string value);
-    std::string to_terminal_string();
 };
 
 /**

@@ -7,6 +7,9 @@
  */
 #include "Token.hpp"
 #include <iostream>
+#include <sstream>
+#include <string>
+#include <iomanip>
 
 Token::Token(TokenType tokenType) : tokenType(tokenType) {}
 
@@ -102,23 +105,72 @@ Token *resolveFloat(std::string float_string) {
     return new FloatingPointLiteral(ans);
 }
 
-std::string Operator::to_terminal_string() {
-    return OperatorTerminalNames[operatorType];
+std::string Token::printToken() {
+    std::stringstream ss;
+    switch (tokenType) {
+        case KEYWORD:
+            ss << KeywordNames[(int)((Keyword *)this)->keywordType];
+            break;
+        case IDENTIFIER:
+            ss << ((Identifier *)this)->identifier_name;
+            break;
+        case INTEGER_LITERAL:
+            ss << ((IntegerLiteral *)this)->value;
+            break;
+        case FLOATING_POINT_LITERAL:
+            ss << std::setprecision(13)
+                      << ((FloatingPointLiteral *)this)->value;
+            break;
+        case OPERATOR:
+            ss
+                << OperatorNames[(int)((Operator *)this)->operatorType];
+            break;
+        case STRING_LITERAL:
+            ss << ((StringLiteral *)this)->value;
+            break;
+        case DELIMITER:
+            ss
+                << DelimiterNames[(int)((Delimiter *)this)->delimiterType];
+            break;
+        case ERROR_TOKEN:
+            ss << ((ErrorToken *)this)->error_message;
+            break;
+        default:
+            break;
+        }
+        return ss.str();
 }
 
-std::string Keyword::to_terminal_string() {
-    return KeywordTerminalNames[keywordType];
+
+std::string Token::toParseString() {
+    std::string token_element;
+    switch (tokenType) {
+        case KEYWORD:
+            token_element = KeywordTerminalNames[((Keyword *)this)->keywordType];
+            break;
+        case IDENTIFIER:
+            token_element = "TK-VAR-ID";
+            break;
+        case INTEGER_LITERAL:
+            token_element = "TK-INT-LITERAL";
+            break;
+        case FLOATING_POINT_LITERAL:
+            token_element = "TK-FLOAT-LITERAL";
+            break;
+        case OPERATOR:
+            token_element = OperatorTerminalNames[((Operator *)this)->operatorType];
+            break;
+        case STRING_LITERAL:
+            token_element = "TK-STRING-LITERAL";
+            break;
+        case DELIMITER:
+            token_element = DelimiterTerminalNames[((Delimiter *)this)->delimiterType];
+            break;
+        case ERROR_TOKEN:
+            throw "Error Token Encountered";
+            break;
+        default:
+            break;
+        }
+        return token_element;
 }
-
-std::string Delimiter::to_terminal_string() {
-    return DelimiterTerminalNames[delimiterType];
-}
-
-std::string Identifier::to_terminal_string() { return "TK-VAR-ID"; }
-
-std::string FloatingPointLiteral::to_terminal_string() {
-    return "TK-FLOAT-LITERAL";
-}
-
-std::string IntegerLiteral::to_terminal_string() { return "TK-INT-LITERAL"; }
-std::string StringLiteral::to_terminal_string() { return "TK-STRING-LITERAL"; }
