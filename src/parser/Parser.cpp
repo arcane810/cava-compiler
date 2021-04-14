@@ -6,7 +6,7 @@
 #include <iostream>
 #include <stdlib.h>
 
-ParseTree *parse_file(FILE *inputFile) {
+std::pair<ParseTree *, bool> parse_file(FILE *inputFile) {
     std::stack<std::pair<std::string, ParseTree *>> st;
     st.push({"0", nullptr});
     Lexer lexer = Lexer(inputFile);
@@ -15,6 +15,7 @@ ParseTree *parse_file(FILE *inputFile) {
     std::vector<GrammarRule> grammar_rules =
         grammarRules("src/parser/grammar_lalr.txt");
     bool error_state = 0;
+    bool success = 1;
     while ((newToken = lexer.nextToken()) != NULL) {
         std::string token_element = newToken->toParseString();
         std::pair<char, int> operation =
@@ -26,7 +27,7 @@ ParseTree *parse_file(FILE *inputFile) {
             std::vector<ParseTree *> children;
             for (int i = 0; i < to_pop; i++) {
                 if (st.empty())
-                    return nullptr;
+                    return {nullptr, false};
                 if (st.top().second)
                     children.push_back(st.top().second);
                 st.pop();
@@ -53,6 +54,7 @@ ParseTree *parse_file(FILE *inputFile) {
             std::cerr << "Error Unexpected token: " << newToken->toString()
                       << std::endl;
             error_state = 1;
+            success = 0;
         }
     }
 
@@ -66,7 +68,7 @@ ParseTree *parse_file(FILE *inputFile) {
         std::vector<ParseTree *> children;
         for (int i = 0; i < to_pop; i++) {
             if (st.empty())
-                return nullptr;
+                return {nullptr, 0};
             if (st.top().second)
                 children.push_back(st.top().second);
             st.pop();
@@ -85,12 +87,12 @@ ParseTree *parse_file(FILE *inputFile) {
     }
     if (operation.first == 'a') {
         st.pop();
-        return st.top().second;
+        return {st.top().second, success};
     } else {
         std::cerr << "Unexpected <EOF>" << std::endl;
         st.pop();
-        return st.top().second;
+        return {st.top().second, false};
     }
 
-    return nullptr;
+    return {nullptr, false};
 }

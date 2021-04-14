@@ -17,6 +17,15 @@ class ParseTree {
 
   public:
     /**
+     * string representation of the token (which was used in
+     * parsing)
+     */
+    std::string token_string;
+    /**
+     * A vector containing the pointers to the children of the parse tree
+     */
+    std::vector<ParseTree *> children;
+    /**
      * Constructor which makes a parse tree node without any children
      * @param token contains the token for token nodes, nullptr otherwise
      * @param token_string string representation of the token (which was used in
@@ -37,15 +46,6 @@ class ParseTree {
      * @param child pointer to the child that is to be added
      */
     void addChild(ParseTree *child);
-    /**
-     * A vector containing the pointers to the children of the parse tree
-     */
-    std::vector<ParseTree *> children;
-    /**
-     * string representation of the token (which was used in
-     * parsing)
-     */
-    std::string token_string;
     /**
      * A function used to print the inorder traversal of the tree
      */

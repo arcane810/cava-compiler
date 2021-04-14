@@ -11,4 +11,4 @@
  * A function to parse the code in the file passed
  * @param file pointer to the file containing the code
  */
-ParseTree *parse_file(FILE *file);
+std::pair<ParseTree *, bool>parse_file(FILE *file);

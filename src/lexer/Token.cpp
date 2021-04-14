@@ -82,7 +82,7 @@ Token *resolveInteger(std::string integer_string) {
 Token *resolveFloat(std::string float_string) {
     long double ans = 0;
     int i = 0;
-    for (; i < float_string.length(); i++) {
+    for (; i < (int)float_string.length(); i++) {
         char c = float_string[i];
         if (c == '.') {
             i++;
@@ -92,7 +92,7 @@ Token *resolveFloat(std::string float_string) {
         ans += (c - '0');
     }
     long double mult = 0.1;
-    for (; i < float_string.length(); i++) {
+    for (; i < (int)float_string.length(); i++) {
         int d = float_string[i] - '0';
         ans += d * mult;
         mult /= 10LL;

@@ -1,11 +1,11 @@
 CC = g++
 OUT_DIR = build
-CFLAGS = -c -Wall -Wunreachable-code -Wextra -g -std=c++17 -O2
+CFLAGS = -c -std=c++17 -O2
 INC = -I src/includes
 .PHONY: test clean
-all : dir build/blockchain.o
+all : dir build/parse.o
 
-build/blockchain.o : build/main.o build/Parser.o build/ParseTree.o build/ParseTable.o build/GrammarRule.o build/Lexer.o build/Token.o
+build/parse.o : build/main.o build/Parser.o build/ParseTree.o build/ParseTable.o build/GrammarRule.o build/Lexer.o build/Token.o
 		$(CC) build/main.o build/Parser.o build/ParseTree.o build/ParseTable.o build/GrammarRule.o build/Lexer.o build/Token.o -o build/parse
 
 build/main.o : src/parser/driver.cpp

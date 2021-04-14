@@ -38,7 +38,13 @@ int main(int argc, char *argv[]) {
     }
     std::vector<std::pair<int, int>> edges;
     try {
-        ParseTree *res = parse_file(inputFile);
+        auto ret = parse_file(inputFile);
+        ParseTree *res = ret.first;
+        if (ret.second) {
+            std::cerr << "Parsing Succesful\n";
+        } else {
+            std::cerr << "Parsing Unsuccesful\n";
+        }
         res->inorder_traversal();
         int node_num = 0;
         std::vector<std::string> labels;
@@ -67,14 +73,14 @@ int main(int argc, char *argv[]) {
         }
 
         const char *name[labels.size()];
-        for (int i = 0; i < labels.size(); i++) {
+        for (int i = 0; i < (int)labels.size(); i++) {
             name[i] = labels[i].c_str();
         }
         write_graphviz(outa, g, make_label_writer(name));
         outa.close();
 
     } catch (...) {
-        std::cout << "Parse Error";
+        std::cerr << "Parse Error";
     }
     return 0;
 }
